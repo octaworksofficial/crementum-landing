@@ -14,17 +14,17 @@ export const GlobalStyle = createGlobalStyle`
 .next-light-theme {
   --background: 251,251,253;
   --secondBackground: 255,255,255;
-  --text: 10,18,30;
+  --text: 38,38,38;
   --textSecondary: 255,255,255;
-  --primary: 22,115,255; 
-  --secondary: 10,18,30;
-  --tertiary: 231,241,251;
+  --primary: 24,144,255; 
+  --secondary: 38,38,38;
+  --tertiary: 231,244,255;
   --cardBackground: 255,255,255;
   --inputBackground: 255,255,255;
   --navbarBackground: 255,255,255;
   --modalBackground: 251,251,253;
   --errorColor: 207,34,46;
-  --logoColor: #243A5A;
+  --logoColor: #1890ff;
 }
 
 .next-dark-theme {
@@ -32,15 +32,15 @@ export const GlobalStyle = createGlobalStyle`
   --secondBackground: 45,55,72;
   --text: 237,237,238;
   --textSecondary: 255,255,255;
-  --primary: 22,115,255; 
-  --secondary: 10,18,30;
-  --tertiary: 231,241,251;
+  --primary: 24,144,255; 
+  --secondary: 38,38,38;
+  --tertiary: 231,244,255;
   --cardBackground: 45,55,72;
   --inputBackground: 45,55,72;
   --navbarBackground: 45,55,72;
   --modalBackground: 26,32,44;
   --errorColor: 207,34,46;
-  --logoColor: #fff;
+  --logoColor: #1890ff;
 }
 
 :root {

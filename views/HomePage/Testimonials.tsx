@@ -1,146 +1,199 @@
-import NextImage from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-
-import { A11y, Autoplay, Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from 'components/Container';
-import Separator from 'components/Separator';
+import OverTitle from 'components/OverTitle';
+import SectionTitle from 'components/SectionTitle';
 import { media } from 'utils/media';
 
 const TESTIMONIALS = [
   {
-    companyLogoUrl: '/testimonials/company-logo-1.svg',
-    content: `Really good. I am so pleased with this product. I didn't even need training.`,
+    content: 'CRMENTUM sayesinde email pazarlama kampanyalarımızı çok daha etkili bir şekilde yönetiyoruz. Açılma oranlarımız %40 arttı!',
     author: {
-      name: 'Clyde Edwards',
-      title: 'Very Serious Man',
-      avatarUrl: '/testimonials/author-photo-1.jpeg',
+      name: 'Ahmet Yılmaz',
+      title: 'Pazarlama Müdürü',
+      company: 'TechStart A.Ş.',
     },
   },
   {
-    companyLogoUrl: '/testimonials/company-logo-2.svg',
-    content: `It's really wonderful. I use saas product often. Thank You! Saas product has really helped our business.`,
+    content: 'Müşteri segmentasyonu ve kişiselleştirilmiş kampanyalar oluşturmak hiç bu kadar kolay olmamıştı. Kesinlikle tavsiye ediyorum.',
     author: {
-      name: 'Jimmy Hunter',
-      title: 'Sigma Male University Graduate',
-      avatarUrl: '/testimonials/author-photo-2.jpeg',
+      name: 'Zeynep Kaya',
+      title: 'E-ticaret Direktörü',
+      company: 'ModaOnline',
     },
   },
   {
-    companyLogoUrl: '/testimonials/company-logo-3.svg',
-    content: `Since I invested in saas product I made over 100,000 dollars profits. It really saves me time and effort. saas product is exactly what our business has been lacking.`,
+    content: 'Detaylı analitik raporları sayesinde hangi kampanyaların işe yaradığını görmek ve stratejimizi buna göre ayarlamak çok kolay.',
     author: {
-      name: 'Marjorie Morgan',
-      title: 'Chief Chad Officer',
-      avatarUrl: '/testimonials/author-photo-3.jpeg',
+      name: 'Mehmet Demir',
+      title: 'Kurucu',
+      company: 'B2B Solutions',
     },
   },
 ];
 
+const STATS = [
+  { number: '10.000+', label: 'Günlük Gönderilen Email' },
+  { number: '%42', label: 'Ortalama Açılma Oranı' },
+  { number: '500+', label: 'Aktif Müşteri' },
+  { number: '%99.9', label: 'Uptime Garantisi' },
+];
+
 export default function Testimonials() {
   return (
-    <div>
-      <Separator />
-      <TestimonialsWrapper>
-        <Swiper modules={[Navigation, Autoplay, A11y]} slidesPerView={1} autoplay={{ delay: 8000 }} centeredSlides navigation loop>
-          {TESTIMONIALS.map((singleTestimonial, idx) => (
-            <SwiperSlide key={idx}>
-              <TestimonialCard>
-                <NextImage
-                  src={singleTestimonial.companyLogoUrl}
-                  alt={`${singleTestimonial.author.name}'s company logo`}
-                  width={200}
-                  height={40}
-                />
-                <Content>“{singleTestimonial.content}”</Content>
-                <AuthorContainer>
-                  <AuthorImageContainer>
-                    <NextImage src={singleTestimonial.author.avatarUrl} alt={singleTestimonial.author.name} width={48} height={48} />
-                  </AuthorImageContainer>
-                  <AuthorContent>
-                    <AuthorName>{singleTestimonial.author.name}</AuthorName>
-                    <AuthorTitle>{singleTestimonial.author.title}</AuthorTitle>
-                  </AuthorContent>
-                </AuthorContainer>
-              </TestimonialCard>
-            </SwiperSlide>
+    <TestimonialsWrapper>
+      <Container>
+        <Content>
+          <CustomOverTitle>Müşterilerimiz Ne Diyor</CustomOverTitle>
+          <SectionTitle>Binlerce İşletme CRMENTUM'a Güveniyor</SectionTitle>
+        </Content>
+
+        <StatsGrid>
+          {STATS.map((stat, idx) => (
+            <StatCard key={idx}>
+              <StatNumber>{stat.number}</StatNumber>
+              <StatLabel>{stat.label}</StatLabel>
+            </StatCard>
           ))}
-        </Swiper>
-      </TestimonialsWrapper>
-      <Separator />
-    </div>
+        </StatsGrid>
+
+        <TestimonialsGrid>
+          {TESTIMONIALS.map((testimonial, idx) => (
+            <TestimonialCard key={idx}>
+              <QuoteIcon>"</QuoteIcon>
+              <TestimonialContent>{testimonial.content}</TestimonialContent>
+              <AuthorInfo>
+                <AuthorAvatar>{testimonial.author.name.charAt(0)}</AuthorAvatar>
+                <AuthorDetails>
+                  <AuthorName>{testimonial.author.name}</AuthorName>
+                  <AuthorTitle>{testimonial.author.title}, {testimonial.author.company}</AuthorTitle>
+                </AuthorDetails>
+              </AuthorInfo>
+            </TestimonialCard>
+          ))}
+        </TestimonialsGrid>
+      </Container>
+    </TestimonialsWrapper>
   );
 }
 
-const TestimonialsWrapper = styled(Container)`
-  position: relative;
+const TestimonialsWrapper = styled.div`
+  padding: 10rem 0;
+  background: rgb(var(--secondBackground));
+`;
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: rgb(var(--secondary));
+const Content = styled.div`
+  text-align: center;
+  margin-bottom: 6rem;
+`;
 
-    ${media('<=desktop')} {
-      display: none;
-    }
+const CustomOverTitle = styled(OverTitle)`
+  margin-bottom: 1.5rem;
+`;
+
+const StatsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  margin-bottom: 8rem;
+
+  ${media('<=tablet')} {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .swiper-button-prev {
-    color: rgb(var(--textSecondary));
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23currentColor'%2F%3E%3C%2Fsvg%3E");
+  ${media('<=phone')} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StatCard = styled.div`
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgb(var(--cardBackground));
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow-md);
+`;
+
+const StatNumber = styled.div`
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgb(var(--primary));
+  margin-bottom: 1rem;
+`;
+
+const StatLabel = styled.div`
+  font-size: 1.4rem;
+  opacity: 0.7;
+`;
+
+const TestimonialsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+
+  ${media('<=desktop')} {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .swiper-button-next {
-    color: rgb(var(--textSecondary));
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23currentColor'%2F%3E%3C%2Fsvg%3E");
+  ${media('<=tablet')} {
+    grid-template-columns: 1fr;
   }
 `;
 
 const TestimonialCard = styled.div`
+  padding: 3rem;
+  background: rgb(var(--cardBackground));
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+`;
+
+const QuoteIcon = styled.div`
+  font-size: 6rem;
+  color: rgb(var(--primary));
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+`;
+
+const TestimonialContent = styled.p`
+  font-size: 1.6rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+`;
+
+const AuthorInfo = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-
-  & > *:not(:first-child) {
-    margin-top: 5rem;
-  }
+  gap: 1.5rem;
 `;
 
-const Content = styled.blockquote`
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: bold;
-  font-style: italic;
-  max-width: 60%;
-
-  ${media('<=desktop')} {
-    max-width: 100%;
-  }
-`;
-
-const AuthorContainer = styled.div`
+const AuthorAvatar = styled.div`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+  color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
 `;
 
-const AuthorContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 1.4rem;
+const AuthorDetails = styled.div``;
+
+const AuthorName = styled.div`
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgb(var(--text));
 `;
 
-const AuthorTitle = styled.p`
-  font-weight: bold;
-`;
-
-const AuthorName = styled.p`
-  font-weight: normal;
-`;
-
-const AuthorImageContainer = styled.div`
-  display: flex;
-  border-radius: 10rem;
-  margin-right: 1rem;
-  overflow: hidden;
+const AuthorTitle = styled.div`
+  font-size: 1.3rem;
+  opacity: 0.7;
 `;

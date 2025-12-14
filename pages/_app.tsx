@@ -10,20 +10,22 @@ import { ColorModeScript } from 'nextjs-color-mode';
 import React, { PropsWithChildren } from 'react';
 import { TinaEditProvider } from 'tinacms/dist/edit-state';
 
+import DemoRequestModal from 'components/DemoRequestModal';
 import Footer from 'components/Footer';
 import { GlobalStyle } from 'components/GlobalStyles';
 import Navbar from 'components/Navbar';
 import NavigationDrawer from 'components/NavigationDrawer';
 import NewsletterModal from 'components/NewsletterModal';
 import WaveCta from 'components/WaveCta';
+import { DemoModalContextProvider, useDemoModalContext } from 'contexts/demo-modal.context';
 import { NewsletterModalContextProvider, useNewsletterModalContext } from 'contexts/newsletter-modal.context';
 import { NavItems } from 'types';
 
 const navItems: NavItems = [
-  { title: 'Awesome SaaS Features', href: '/features' },
-  { title: 'Pricing', href: '/pricing' },
-  { title: 'Contact', href: '/contact' },
-  { title: 'Sign up', href: '/sign-up', outlined: true },
+  { title: 'Özellikler', href: '/#ozellikler' },
+  { title: 'Nasıl Çalışır', href: '/#nasil-calisir' },
+  { title: 'SSS', href: '/#sss' },
+  { title: 'İletişim', href: '/contact' },
 ];
 
 const TinaCMS = dynamic(() => import('tinacms'), { ssr: false });
@@ -78,17 +80,29 @@ function MyApp({ Component, pageProps }: AppProps) {
 function Providers<T>({ children }: PropsWithChildren<T>) {
   return (
     <NewsletterModalContextProvider>
-      <NavigationDrawer items={navItems}>{children}</NavigationDrawer>
+      <DemoModalContextProvider>
+        <NavigationDrawer items={navItems}>{children}</NavigationDrawer>
+      </DemoModalContextProvider>
     </NewsletterModalContextProvider>
   );
 }
 
 function Modals() {
   const { isModalOpened, setIsModalOpened } = useNewsletterModalContext();
-  if (!isModalOpened) {
-    return null;
-  }
-  return <NewsletterModal onClose={() => setIsModalOpened(false)} />;
+  const { demoModalState, closeDemoModal } = useDemoModalContext();
+
+  return (
+    <>
+      {isModalOpened && <NewsletterModal onClose={() => setIsModalOpened(false)} />}
+      {demoModalState.isOpen && (
+        <DemoRequestModal
+          onClose={closeDemoModal}
+          source={demoModalState.source}
+          planInterest={demoModalState.planInterest}
+        />
+      )}
+    </>
+  );
 }
 
 export default MyApp;

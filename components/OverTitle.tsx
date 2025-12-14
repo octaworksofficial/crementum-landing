@@ -19,7 +19,6 @@ const OverTitle = styled.span`
   letter-spacing: 0.02em;
   font-weight: bold;
   line-height: 0;
-  text-transform: uppercase;
 
   ${media('<=desktop')} {
     line-height: 1.5;

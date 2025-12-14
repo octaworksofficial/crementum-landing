@@ -1,4 +1,3 @@
-import NextImage from 'next/image';
 import NextLink from 'next/link';
 import styled from 'styled-components';
 import { media } from 'utils/media';
@@ -16,7 +15,7 @@ export default function ArticleCard({ title, slug, imageUrl, description }: Arti
       <ArticleCardWrapper className="article-card-wrapper">
         <HoverEffectContainer>
           <ImageContainer>
-            <NextImage src={imageUrl} layout="fill" objectFit="cover" alt={title} />
+            <CardImage src={imageUrl} alt={title} />
           </ImageContainer>
           <Content>
             <Title>{title}</Title>
@@ -56,25 +55,17 @@ const HoverEffectContainer = styled.div`
 const ImageContainer = styled.div`
   position: relative;
   height: 20rem;
-
-  &:before {
-    display: block;
-    content: '';
-    width: 100%;
-    padding-top: calc((9 / 16) * 100%);
-  }
-
-  & > div {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+  overflow: hidden;
 
   ${media('<=desktop')} {
     width: 100%;
   }
+`;
+
+const CardImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Content = styled.div`

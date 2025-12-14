@@ -1,60 +1,58 @@
-import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import styled from 'styled-components';
-import BasicSection from 'components/BasicSection';
-import Link from 'components/Link';
 import { EnvVars } from 'env';
-import { getAllPosts } from 'utils/postsFetcher';
 import Cta from 'views/HomePage/Cta';
+import FAQ from 'views/HomePage/FAQ';
 import Features from 'views/HomePage/Features';
-import FeaturesGallery from 'views/HomePage/FeaturesGallery';
 import Hero from 'views/HomePage/Hero';
-import Partners from 'views/HomePage/Partners';
-import ScrollableBlogPosts from 'views/HomePage/ScrollableBlogPosts';
+import HowItWorks from 'views/HomePage/HowItWorks';
+import Integrations from 'views/HomePage/Integrations';
+import Pricing from 'views/HomePage/Pricing';
 import Testimonials from 'views/HomePage/Testimonials';
 
-export default function Homepage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Homepage() {
   return (
     <>
       <Head>
         <title>{EnvVars.SITE_NAME}</title>
         <meta
           name="description"
-          content="Tempor nostrud velit fugiat nostrud duis incididunt Lorem deserunt est tempor aute dolor ad elit."
+          content="CRMENTUM - Profesyonel Email Pazarlama ve CRM Platformu. Müşterilerinizle güçlü ilişkiler kurun, etkili kampanyalar oluşturun. Türkiye'nin en kapsamlı email pazarlama çözümü."
         />
+        <meta name="keywords" content="email pazarlama, CRM, müşteri ilişkileri yönetimi, email kampanyası, drip kampanya, email takip, analitik" />
+        <meta property="og:title" content="CRMENTUM - Profesyonel Email Pazarlama Platformu" />
+        <meta property="og:description" content="Müşterilerinizle güçlü ilişkiler kurun, etkili email kampanyaları oluşturun." />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="CRMENTUM - Profesyonel Email Pazarlama Platformu" />
+        <meta name="twitter:description" content="Müşterilerinizle güçlü ilişkiler kurun, etkili email kampanyaları oluşturun." />
+        <link rel="canonical" href="https://crmentum.com" />
       </Head>
       <HomepageWrapper>
         <WhiteBackgroundContainer>
           <Hero />
-          <Partners />
-          <BasicSection imageUrl="/demo-illustration-1.svg" title="Lorem ipsum dolor sit amet consectetur." overTitle="sit amet gogo">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem error incidunt a doloremque voluptatem porro inventore
-              voluptate quo deleniti animi laboriosam.{' '}
-              <Link href="/help-center">Possimus ullam velit rem itaque consectetur, in distinctio?</Link> Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Soluta repellendus quia quos obcaecati nihil. Laudantium non accusantium, voluptate eum nesciunt
-              at suscipit quis est soluta?
-            </p>
-          </BasicSection>
-          <BasicSection imageUrl="/demo-illustration-2.svg" title="Lorem ipsum dolor sit." overTitle="lorem ipsum" reversed>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem error incidunt a doloremque voluptatem porro inventore{' '}
-              <strong>voluptate quo deleniti animi laboriosam</strong>. Possimus ullam velit rem itaque consectetur, in distinctio?
-            </p>
-            <ul>
-              <li>Professional point 1</li>
-              <li>Professional remark 2</li>
-              <li>Professional feature 3</li>
-            </ul>
-          </BasicSection>
         </WhiteBackgroundContainer>
         <DarkerBackgroundContainer>
-          <Cta />
-          <FeaturesGallery />
           <Features />
-          <Testimonials />
-          <ScrollableBlogPosts posts={posts} />
         </DarkerBackgroundContainer>
+        <WhiteBackgroundContainer>
+          <HowItWorks />
+        </WhiteBackgroundContainer>
+        <DarkerBackgroundContainer>
+          <Pricing />
+        </DarkerBackgroundContainer>
+        <WhiteBackgroundContainer>
+          <Testimonials />
+        </WhiteBackgroundContainer>
+        <DarkerBackgroundContainer>
+          <Integrations />
+        </DarkerBackgroundContainer>
+        <WhiteBackgroundContainer>
+          <FAQ />
+        </WhiteBackgroundContainer>
+        <CtaContainer>
+          <Cta />
+        </CtaContainer>
       </HomepageWrapper>
     </>
   );
@@ -62,34 +60,18 @@ export default function Homepage({ posts }: InferGetStaticPropsType<typeof getSt
 
 const HomepageWrapper = styled.div`
   & > :last-child {
-    margin-bottom: 15rem;
+    margin-bottom: 0;
   }
 `;
 
 const DarkerBackgroundContainer = styled.div`
   background: rgb(var(--background));
-
-  & > *:not(:first-child) {
-    margin-top: 15rem;
-  }
 `;
 
 const WhiteBackgroundContainer = styled.div`
   background: rgb(var(--secondBackground));
-
-  & > :last-child {
-    padding-bottom: 15rem;
-  }
-
-  & > *:not(:first-child) {
-    margin-top: 15rem;
-  }
 `;
 
-export async function getStaticProps() {
-  return {
-    props: {
-      posts: await getAllPosts(),
-    },
-  };
-}
+const CtaContainer = styled.div`
+  background: rgb(var(--background));
+`;

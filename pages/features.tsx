@@ -3,72 +3,70 @@ import AutofitGrid from 'components/AutofitGrid';
 import BasicCard from 'components/BasicCard';
 import Page from 'components/Page';
 import SectionTitle from 'components/SectionTitle';
-import YoutubeVideo from 'components/YoutubeVideo';
 import { media } from 'utils/media';
 
 const FEATURES = [
   {
     imageUrl: '/grid-icons/asset-1.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Müşteri Yönetimi',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Tüm müşteri verilerinizi tek bir platformda yönetin. Segmentasyon, etiketleme ve özel alanlar ile müşterilerinizi organize edin.',
   },
   {
     imageUrl: '/grid-icons/asset-2.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Email Şablon Editörü',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Sürükle-bırak editörümüz ile profesyonel email şablonları oluşturun. Mobil uyumlu, özelleştirilebilir tasarımlar.',
   },
   {
     imageUrl: '/grid-icons/asset-3.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Kampanya Yönetimi',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Hedefli email kampanyaları oluşturun ve yönetin. Zamanlama, A/B testi ve otomasyon özellikleri ile etkinliğinizi artırın.',
   },
   {
     imageUrl: '/grid-icons/asset-4.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Detaylı Analitik',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Gerçek zamanlı açılma, tıklama ve dönüşüm oranlarını takip edin. Grafikler ve raporlarla performansınızı görselleştirin.',
   },
   {
     imageUrl: '/grid-icons/asset-5.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Otomasyon',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Drip kampanyalar ve otomatik yanıtlayıcılar ile müşteri yolculuğunu otomatikleştirin. Zamandan tasarruf edin.',
   },
   {
     imageUrl: '/grid-icons/asset-6.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'API Entegrasyonu',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'RESTful API ile mevcut sistemlerinize kolayca entegre edin. Webhook desteği ile gerçek zamanlı bildirimler alın.',
   },
   {
     imageUrl: '/grid-icons/asset-7.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Multi-tenant Mimari',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Birden fazla marka veya müşteriyi tek platformdan yönetin. Her biri için ayrı ayarlar ve izolasyon.',
   },
   {
     imageUrl: '/grid-icons/asset-8.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: 'Veri Güvenliği',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'SSL şifreleme, JWT kimlik doğrulama ve KVKK uyumlu altyapı. Verileriniz güvende.',
   },
   {
     imageUrl: '/grid-icons/asset-9.svg',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: '7/24 Destek',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis error dolorem ipsa dolore facere est consequuntur aut, eos doloribus voluptate?',
+      'Uzman destek ekibimiz her zaman yanınızda. Email, telefon ve canlı sohbet ile destek alın.',
   },
 ];
 
 export default function FeaturesPage() {
   return (
-    <Page title="Features" description="Elit aute do nisi Lorem id ea culpa sint duis eu tempor dolore elit.">
+    <Page title="Özellikler" description="CRMENTUM'un sunduğu tüm özellikler ile email pazarlama stratejinizi güçlendirin.">
       <Wrapper>
-        <SectionTitle>Check out this quick introduction</SectionTitle>
-        <YoutubeVideo url="https://www.youtube.com/watch?v=BggrpKfqh1c" />
+        <SectionTitle>CRMENTUM Özellikleri</SectionTitle>
         <CustomAutofitGrid>
           {FEATURES.map((singleFeature, idx) => (
             <BasicCard key={singleFeature.title} {...singleFeature} />

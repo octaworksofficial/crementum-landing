@@ -1,27 +1,34 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Pool } from 'pg';
 
-const sgMail = require('@sendgrid/mail');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 export default async function SendEmail(req: NextApiRequest, res: NextApiResponse) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-  const { subject, description, email, name } = req.body;
-  const referer = req.headers.referer;
+  const { description, email, name } = req.body;
 
-  const content = {
-    to: ['contact@bstefanski.com'],
-    from: 'contact@bstefanski.com',
-    subject: subject,
-    text: description,
-    html: `<div>
-    <h1>Name: ${name}</h1>
-    <h1>E-mail: ${email}</h1>
-    <p>${description}</p>
-    <p>Sent from: ${referer || 'Not specified or hidden'}`,
-  };
+  // Validate required fields
+  if (!name || !email || !description) {
+    return res.status(400).json({ error: 'Tüm alanlar gereklidir.' });
+  }
 
   try {
-    await sgMail.send(content);
+    const query = `
+      INSERT INTO contact_requests (name, email, message)
+      VALUES ($1, $2, $3)
+      RETURNING id
+    `;
+    
+    await pool.query(query, [name, email, description]);
+    
     res.status(204).end();
   } catch (error) {
     console.log('ERROR', error);

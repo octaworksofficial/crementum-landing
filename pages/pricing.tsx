@@ -5,7 +5,7 @@ import PricingTablesSection from 'views/PricingPage/PricingTablesSection';
 
 export default function PricingPage() {
   return (
-    <Page title="Pricing" description="Cupidatat et reprehenderit ullamco aute ullamco anim tempor.">
+    <Page title="Çözümler" description="CRMENTUM çözümleri. İşletmenize uygun email pazarlama ve CRM planını keşfedin.">
       <Wrapper>
         <PricingTablesSection />
         <FaqSection />

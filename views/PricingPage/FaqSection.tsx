@@ -5,34 +5,24 @@ import SectionTitle from 'components/SectionTitle';
 export default function FaqSection() {
   return (
     <Wrapper>
-      <SectionTitle>Frequently asked question</SectionTitle>
-      <Accordion title="Eiusmod eu laboris qui minim incididunt et id in elit veniam Lorem nulla ullamco.">
-        Voluptate ad aliquip in adipisicing incididunt officia. Aliqua consectetur id commodo fugiat sunt dolor minim. Aliqua ut deserunt
-        sit irure tempor esse labore elit commodo pariatur in nisi minim culpa. Exercitation eu in mollit tempor cillum excepteur
-        adipisicing cillum do et dolor est deserunt dolor. Deserunt reprehenderit nulla commodo quis et consectetur deserunt ea eiusmod
-        reprehenderit aliqua. Cupidatat commodo do ad ullamco ad enim sint sint irure amet culpa. Consequat sit Lorem sint culpa.
+      <SectionTitle>Sıkça Sorulan Sorular</SectionTitle>
+      <Accordion title="CRMENTUM nasıl çalışır?">
+        CRMENTUM, müşteri bilgilerinizi yönetmenizi, profesyonel email şablonları oluşturmanızı ve kampanyalar göndermenizi sağlayan bulut tabanlı bir platformdur. Kişilerinizi içe aktarın, şablonlarınızı tasarlayın ve kampanyalarınızı birkaç tıklamayla başlatın.
       </Accordion>
-      <Accordion title="Minim eiusmod aliquip in ea mollit fugiat ullamco veniam enim sint exercitation.">
-        Lorem laboris ullamco labore consectetur duis amet excepteur esse labore sunt pariatur do aliqua amet. Enim exercitation labore
-        nostrud consectetur veniam eiusmod pariatur do commodo dolore pariatur amet veniam. Irure do et ut dolor quis reprehenderit anim
-        aute sint deserunt tempor sunt nostrud. Deserunt et aute non dolor.
+      <Accordion title="Ücretsiz deneme süresi var mı?">
+        Evet! 14 gün boyunca tüm özellikleri ücretsiz deneyebilirsiniz. Kredi kartı bilgisi gerekmez. Deneme süresinin sonunda dilediğiniz planı seçebilir veya ücretsiz plan ile devam edebilirsiniz.
       </Accordion>
-      <Accordion title="Commodo officia dolore anim occaecat.">
-        Enim ea cillum pariatur incididunt incididunt sunt ea exercitation nisi aliquip. Cillum deserunt ut esse Lorem non qui labore labore
-        eiusmod magna incididunt ut quis. Nulla excepteur adipisicing ipsum do non occaecat.
+      <Accordion title="Mevcut müşteri listemi nasıl içe aktarabilirim?">
+        Excel veya CSV dosyalarınızı doğrudan platformumuza yükleyebilirsiniz. Sütun eşleştirme özelliğimiz ile verilerinizi kolayca düzenleyebilirsiniz. Ayrıca API üzerinden de toplu veri aktarımı yapabilirsiniz.
       </Accordion>
-      <Accordion title="Irure Lorem proident esse enim.">
-        Ipsum laboris sit minim occaecat nisi qui. Tempor eiusmod fugiat occaecat labore. Exercitation do cillum cillum laborum velit
-        laborum ea magna duis laborum in anim. Enim laboris dolore laboris consectetur enim duis deserunt consequat excepteur ipsum
-        excepteur. Non dolor magna et est cillum sint eiusmod sit eiusmod veniam id. Aliqua non non labore amet laborum fugiat ad nostrud ex
-        officia exercitation.
+      <Accordion title="Email gönderim limitleri nelerdir?">
+        Ücretsiz planda aylık 1.000 email, Başlangıç planında 25.000 email, Profesyonel planda 100.000 email gönderebilirsiniz. Kurumsal plan için sınırsız gönderim imkanı sunuyoruz.
       </Accordion>
-      <Accordion title="Ea quis consequat sunt sint aute pariatur aliquip minim voluptate.">
-        Sint eiusmod aute nulla ut esse sunt fugiat nulla exercitation duis pariatur. Magna anim incididunt magna id quis irure laborum sint
-        voluptate tempor esse elit dolore. Elit exercitation pariatur adipisicing aute. Nisi deserunt enim consequat anim adipisicing
-        laborum sint occaecat elit. Consequat officia cupidatat magna incididunt nisi in sunt duis reprehenderit ullamco in amet cillum.
-        Dolor nisi proident ipsum aute velit aliquip magna fugiat reprehenderit. Enim ex aliqua et velit exercitation reprehenderit veniam
-        do eu exercitation ad duis.
+      <Accordion title="Verilerim güvende mi?">
+        Evet, veri güvenliği bizim için önceliktir. SSL şifreleme, JWT tabanlı kimlik doğrulama, bcrypt ile şifre hashleme ve düzenli yedekleme kullanıyoruz. Ayrıca KVKK uyumlu veri işleme politikalarımız mevcuttur.
+      </Accordion>
+      <Accordion title="Planımı nasıl yükseltebilir veya düşürebilirim?">
+        Hesap ayarlarınızdan dilediğiniz zaman planınızı değiştirebilirsiniz. Yükseltmelerde fark ücreti hesaplanır, düşürmelerde ise bir sonraki faturalama döneminden itibaren yeni plan geçerli olur.
       </Accordion>
     </Wrapper>
   );

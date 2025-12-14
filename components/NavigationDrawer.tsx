@@ -113,7 +113,6 @@ const Wrapper = styled.div`
 const NavItem = styled.li`
   a {
     font-size: 3rem;
-    text-transform: uppercase;
     display: block;
     color: currentColor;
     text-decoration: none;

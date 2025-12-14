@@ -52,7 +52,6 @@ const Title = styled.h3`
   font-size: 1.3rem;
   letter-spacing: 0.02em;
   line-height: 0;
-  text-transform: uppercase;
   margin-bottom: 2rem;
   text-align: center;
   opacity: 0.8;

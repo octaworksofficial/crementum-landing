@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
@@ -6,31 +5,35 @@ import ButtonGroup from 'components/ButtonGroup';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
+import { useDemoModalContext } from 'contexts/demo-modal.context';
 import { media } from 'utils/media';
 
 export default function Cta() {
+  const { openDemoModal } = useDemoModalContext();
+
   return (
     <CtaWrapper>
       <Container>
         <Stack>
-          <OverTitle>Lorem ipsum dolor sit amet</OverTitle>
-          <SectionTitle>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus delectus?</SectionTitle>
+          <OverTitle>Hemen Başlayın</OverTitle>
+          <SectionTitle>Email Pazarlamada Bir Adım Öne Geçin</SectionTitle>
           <Description>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda beatae accusamus deleniti nihil quas tempora numquam, vitae
-            culpa.
+            Ücretsiz demo ile platformumuzu keşfedin. 
+            Binlerce işletme CRMENTUM ile müşteri ilişkilerini güçlendiriyor.
           </Description>
           <ButtonGroup>
-            <NextLink href="#early-access" passHref>
-              <Button>
-                Subscribe to the newsletter <span>&rarr;</span>
-              </Button>
-            </NextLink>
-            <NextLink href="#whitepaper" passHref>
-              <OutlinedButton transparent>
-                Features <span>&rarr;</span>
-              </OutlinedButton>
-            </NextLink>
+            <Button onClick={() => openDemoModal('cta', 'demo')}>
+              Ücretsiz Demo Talep Et <span>&rarr;</span>
+            </Button>
+            <OutlinedButton transparent onClick={() => openDemoModal('cta', 'teklif')}>
+              Teklif Al <span>&rarr;</span>
+            </OutlinedButton>
           </ButtonGroup>
+          <TrustBadges>
+            <TrustItem>✓ Ücretsiz demo</TrustItem>
+            <TrustItem>✓ Size özel teklif</TrustItem>
+            <TrustItem>✓ 7/24 destek</TrustItem>
+          </TrustBadges>
         </Stack>
       </Container>
     </CtaWrapper>
@@ -39,13 +42,15 @@ export default function Cta() {
 
 const Description = styled.div`
   font-size: 1.8rem;
-  color: rgba(var(--textSecondary), 0.8);
+  color: rgba(var(--textSecondary), 0.9);
+  max-width: 60rem;
+  line-height: 1.7;
 `;
 
 const Stack = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 12.5rem 0;
+  padding: 10rem 0;
   color: rgb(var(--textSecondary));
   text-align: center;
   align-items: center;
@@ -53,7 +58,7 @@ const Stack = styled.div`
 
   & > *:not(:first-child) {
     max-width: 80%;
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
 
   ${media('<=tablet')} {
@@ -67,10 +72,30 @@ const Stack = styled.div`
 `;
 
 const OutlinedButton = styled(Button)`
-  border: 1px solid rgb(var(--textSecondary));
+  border: 2px solid rgb(var(--textSecondary));
   color: rgb(var(--textSecondary));
+
+  &:hover {
+    background: rgba(var(--textSecondary), 0.1);
+  }
 `;
 
 const CtaWrapper = styled.div`
-  background: rgb(var(--secondary));
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+`;
+
+const TrustBadges = styled.div`
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+
+  ${media('<=phone')} {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+const TrustItem = styled.span`
+  font-size: 1.4rem;
+  opacity: 0.9;
 `;

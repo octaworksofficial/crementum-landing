@@ -1,155 +1,221 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import React, { useEffect, useRef, useState } from 'react';
+import { Pool } from 'pg';
+import React from 'react';
 import styled from 'styled-components';
-import { staticRequest } from 'tinacms';
 import Container from 'components/Container';
-import MDXRichText from 'components/MDXRichText';
-import { NonNullableChildrenDeep } from 'types';
+import Page from 'components/Page';
+import RichText from 'components/RichText';
 import { formatDate } from 'utils/formatDate';
 import { media } from 'utils/media';
-import { getReadTime } from 'utils/readTime';
-import Header from 'views/SingleArticlePage/Header';
-import MetadataHead from 'views/SingleArticlePage/MetadataHead';
-import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead';
-import ShareWidget from 'views/SingleArticlePage/ShareWidget';
-import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead';
-import { Posts, PostsDocument, Query } from '.tina/__generated__/types';
 
-export default function SingleArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  const contentRef = useRef<HTMLDivElement | null>(null);
-  const [readTime, setReadTime] = useState('');
+interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  image_url: string | null;
+  author_name: string;
+  author_image: string | null;
+  read_time: number;
+  published_at: string;
+}
 
-  useEffect(() => {
-    calculateReadTime();
-    lazyLoadPrismTheme();
+interface SingleArticlePageProps {
+  post: BlogPost;
+}
 
-    function calculateReadTime() {
-      const currentContent = contentRef.current;
-      if (currentContent) {
-        setReadTime(getReadTime(currentContent.textContent || ''));
-      }
-    }
-
-    function lazyLoadPrismTheme() {
-      const prismThemeLinkEl = document.querySelector('link[data-id="prism-theme"]');
-
-      if (!prismThemeLinkEl) {
-        const headEl = document.querySelector('head');
-        if (headEl) {
-          const newEl = document.createElement('link');
-          newEl.setAttribute('data-id', 'prism-theme');
-          newEl.setAttribute('rel', 'stylesheet');
-          newEl.setAttribute('href', '/prism-theme.css');
-          newEl.setAttribute('media', 'print');
-          newEl.setAttribute('onload', "this.media='all'; this.onload=null;");
-          headEl.appendChild(newEl);
-        }
-      }
-    }
-  }, []);
-
-  const { slug, data } = props;
-  const content = data.getPostsDocument.data.body;
-
-  if (!data) {
-    return null;
-  }
-  const { title, description, date, tags, imageUrl } = data.getPostsDocument.data as NonNullableChildrenDeep<Posts>;
-  const meta = { title, description, date: date, tags, imageUrl, author: '' };
-  const formattedDate = formatDate(new Date(date));
-  const absoluteImageUrl = imageUrl.replace(/\/+/, '/');
+export default function SingleArticlePage({ post }: SingleArticlePageProps) {
+  const formattedDate = formatDate(new Date(post.published_at));
+  
   return (
-    <>
+    <Page title={post.title} description={post.description}>
       <Head>
-        <noscript>
-          <link rel="stylesheet" href="/prism-theme.css" />
-        </noscript>
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
       </Head>
-      <OpenGraphHead slug={slug} {...meta} />
-      <StructuredDataHead slug={slug} {...meta} />
-      <MetadataHead {...meta} />
-      <CustomContainer id="content" ref={contentRef}>
-        <ShareWidget title={title} slug={slug} />
-        <Header title={title} formattedDate={formattedDate} imageUrl={absoluteImageUrl} readTime={readTime} />
-        <MDXRichText content={content} />
+      <CustomContainer>
+        <ArticleHeader>
+          <ArticleTitle>{post.title}</ArticleTitle>
+          <ArticleMeta>
+            <MetaItem>
+              <AuthorName>{post.author_name}</AuthorName>
+            </MetaItem>
+            <MetaDivider>•</MetaDivider>
+            <MetaItem>{formattedDate}</MetaItem>
+            <MetaDivider>•</MetaDivider>
+            <MetaItem>{post.read_time} dk okuma</MetaItem>
+          </ArticleMeta>
+        </ArticleHeader>
+        
+        <ArticleContent>
+          <RichText>
+            <div dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content) }} />
+          </RichText>
+        </ArticleContent>
       </CustomContainer>
-    </>
+    </Page>
   );
 }
 
-export async function getStaticPaths() {
-  const postsListData = await staticRequest({
-    query: `
-      query PostsSlugs{
-        getPostsList{
-          edges{
-            node{
-              sys{
-                basename
-              }
-            }
-          }
-        }
-      }
-    `,
-    variables: {},
+// Basit markdown parser
+function parseMarkdown(content: string): string {
+  return content
+    // Headers
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    // Bold
+    .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.*)\*/gim, '<em>$1</em>')
+    // Lists
+    .replace(/^\- (.*$)/gim, '<li>$1</li>')
+    .replace(/^(\d+)\. (.*$)/gim, '<li>$2</li>')
+    // Paragraphs
+    .replace(/\n\n/gim, '</p><p>')
+    .replace(/^(?!<[hlu])/gim, '<p>')
+    .replace(/(?<![>])$/gim, '</p>')
+    // Clean up
+    .replace(/<p><\/p>/g, '')
+    .replace(/<p><h/g, '<h')
+    .replace(/<\/h(\d)><\/p>/g, '</h$1>')
+    .replace(/<p><li>/g, '<ul><li>')
+    .replace(/<\/li><\/p>/g, '</li></ul>')
+    .replace(/<\/li><li>/g, '</li><li>');
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const slug = params?.slug as string;
+  
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
 
-  if (!postsListData) {
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
+  try {
+    const query = `
+      SELECT id, slug, title, description, content, image_url, author_name, author_image, read_time, published_at
+      FROM landing_blog
+      WHERE slug = $1 AND is_published = true
+    `;
+    const result = await pool.query(query, [slug]);
 
-  type NullAwarePostsList = { getPostsList: NonNullableChildrenDeep<Query['getPostsList']> };
-  return {
-    paths: (postsListData as NullAwarePostsList).getPostsList.edges.map((edge) => ({
-      params: { slug: normalizePostName(edge.node.sys.basename) },
-    })),
-    fallback: false,
-  };
-}
-
-function normalizePostName(postName: string) {
-  return postName.replace('.mdx', '');
-}
-
-export async function getStaticProps({ params }: GetStaticPropsContext<{ slug: string }>) {
-  const { slug } = params as { slug: string };
-  const variables = { relativePath: `${slug}.mdx` };
-  const query = `
-    query BlogPostQuery($relativePath: String!) {
-      getPostsDocument(relativePath: $relativePath) {
-        data {
-          title
-          description
-          date
-          tags
-          imageUrl
-          body
-        }
-      }
+    if (result.rows.length === 0) {
+      return {
+        notFound: true,
+      };
     }
-  `;
 
-  const data = (await staticRequest({
-    query: query,
-    variables: variables,
-  })) as { getPostsDocument: PostsDocument };
-
-  return {
-    props: { slug, variables, query, data },
-  };
-}
+    return {
+      props: {
+        post: JSON.parse(JSON.stringify(result.rows[0])),
+      },
+    };
+  } catch (error) {
+    console.error('Blog fetch error:', error);
+    return {
+      notFound: true,
+    };
+  } finally {
+    await pool.end();
+  }
+};
 
 const CustomContainer = styled(Container)`
   position: relative;
-  max-width: 90rem;
-  margin: 10rem auto;
+  max-width: 80rem;
+  margin: 5rem auto;
 
   ${media('<=tablet')} {
-    margin: 5rem auto;
+    margin: 3rem auto;
+  }
+`;
+
+const ArticleHeader = styled.header`
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(var(--text), 0.1);
+`;
+
+const ArticleTitle = styled.h1`
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  color: rgb(var(--text));
+
+  ${media('<=tablet')} {
+    font-size: 3rem;
+  }
+`;
+
+const ArticleMeta = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
+const MetaItem = styled.span`
+  font-size: 1.4rem;
+  color: rgba(var(--text), 0.7);
+`;
+
+const MetaDivider = styled.span`
+  color: rgba(var(--text), 0.3);
+`;
+
+const AuthorName = styled.span`
+  font-weight: 600;
+  color: rgb(var(--primary));
+`;
+
+const ArticleContent = styled.article`
+  h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+    color: rgb(var(--text));
+  }
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    color: rgb(var(--text));
+  }
+
+  p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: rgba(var(--text), 0.85);
+  }
+
+  ul, ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  li {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    color: rgba(var(--text), 0.85);
+  }
+
+  strong {
+    font-weight: 600;
+    color: rgb(var(--text));
   }
 `;

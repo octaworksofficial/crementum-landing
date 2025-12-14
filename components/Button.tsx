@@ -13,7 +13,6 @@ const Button = styled.a<ButtonProps>`
   padding: 1.75rem 2.25rem;
   font-size: 1.2rem;
   color: ${(p) => (p.transparent ? 'rgb(var(--text))' : 'rgb(var(--textSecondary))')};
-  text-transform: uppercase;
   font-family: var(--font);
   font-weight: bold;
   border-radius: 0.4rem;
