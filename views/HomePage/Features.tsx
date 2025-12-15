@@ -84,44 +84,44 @@ const ICONS = [UsersIcon, MailIcon, RocketIcon, ChartBarIcon, BuildingIcon, Pale
 
 const FEATURES = [
   {
-    title: 'Müşteri Yönetimi',
+    title: 'Hiçbir Müşteri Atlanmaz',
     description:
-      'Sınırsız kişi depolama, özel alanlar, Excel/CSV import-export, gelişmiş filtreleme ve segmentasyon özellikleri ile müşterilerinizi profesyonelce yönetin.',
+      'Satış elemanlarınız yoğunlukta bir müşteriyi atlayabilir, CRMENTUM atlamaz. Her müşteri otomatik takip edilir, hiçbiri unutulmaz. 10 personel yerine 2 personel ile daha verimli çalışın.',
   },
   {
-    title: 'Email Şablon Oluşturucu',
+    title: 'Tarihler ve Saatler Asla Karışmaz',
     description:
-      'Sürükle-bırak editör, HTML kod editörü, dinamik değişkenler ve hazır profesyonel şablonlarla etkileyici emailler oluşturun.',
+      'İnsan hatası yapabilir, CRMENTUM yapmaz. Randevular, takipler, hatırlatmalar tam zamanında gerçekleşir. Dakika bile şaşmaz, müşterileriniz her zaman doğru zamanda bilgilendirilir.',
   },
   {
-    title: 'Kampanya Yönetimi',
+    title: 'Yapay Zeka ile Kurumunuzu Tanır',
     description:
-      'Çok adımlı drip kampanyaları, zamanlanmış gönderim, tekrarlayan kampanyalar, A/B testi ve detaylı kampanya analizleri.',
+      'Gerçek bir insan gibi kurumunuzu öğrenir, markanızın sesini yakalar. Size özel iletişim önerileri oluşturur, her müşteriye kişiselleştirilmiş mesajlar gönderir. Siz sadece onaylarsınız.',
   },
   {
-    title: 'Email Takip ve Analitik',
+    title: 'Çok Kanallı İletişim Yönetimi',
     description:
-      'Gerçek zamanlı açılma takibi, tıklama analitiği, bounce izleme, coğrafi veriler ve cihaz/email istemci tespiti.',
+      'Sadece email değil! WhatsApp, SMS, telefon - tüm iletişim kanallarınızı tek yerden yönetin. Hangi kanaldan ulaşıldı, ne zaman yanıt verildi, hepsi tek ekranda.',
   },
   {
-    title: 'Çoklu Organizasyon',
+    title: 'Tüm Müşteri Geçmişi Tek Yerde',
     description:
-      'Her organizasyon için ayrı çalışma alanları, rol yönetimi, veri izolasyonu ve özel markalama özellikleri.',
+      'Kim ne attı, hangi kanallardan ulaşıldı, kaç defa konuşuldu - tüm müşteri geçmişi tek bir panelde. Yeni çalışanlar bile sanki yıllardır müşteriyi tanıyormuş gibi görüşebilir.',
   },
   {
-    title: 'Kurumsal Kimlik',
+    title: '24/7 Kesintisiz Çalışma',
     description:
-      'Özel logo ve favicon, sosyal medya entegrasyonu, takım üyesi profilleri ve ürün/hizmet kataloğu yönetimi.',
+      'Personel izne çıkar, hastalanır, işten ayrılır. CRMENTUM hep burada. Gece yarısı gelen müşteri talebi bile sabah ilk iş karşılanır. Hiçbir fırsat kaçmaz.',
   },
   {
-    title: 'Dashboard ve Raporlar',
+    title: 'Maliyet Tasarrufu Sağlayın',
     description:
-      'Gerçek zamanlı istatistikler, email teslimat metrikleri, açılma ve tıklama oranları, performans trendleri.',
+      'Yeni personel alımı, eğitim, maaş, sigorta - hepsi maliyet. CRMENTUM ile %80\'e varan personel tasarrufu yapın. Ekibiniz satışa odaklansın, rutin işler otomasyona kalsın.',
   },
   {
-    title: 'Güvenlik ve Uyumluluk',
+    title: 'Verileriniz Güvende',
     description:
-      'JWT tabanlı kimlik doğrulama, güvenli şifre şifreleme, oturum yönetimi ve KVKK uyumlu işlemler.',
+      'KVKK uyumlu, güvenli veri saklama. Müşteri bilgileriniz şifrelenir, yetkisiz erişime karşı korunur. Güvenlik sertifikalarımızla gönül rahatlığıyla çalışın.',
   },
 ];
 
@@ -130,8 +130,8 @@ export default function Features() {
     <FeaturesWrapper id="ozellikler">
       <Container>
         <Content>
-          <CustomOverTitle>Özellikler</CustomOverTitle>
-          <SectionTitle>Email pazarlama için ihtiyacınız olan her şey</SectionTitle>
+          <CustomOverTitle>Neler Kazanacaksınız?</CustomOverTitle>
+          <SectionTitle>İşletmenizi dönüştüren özellikler</SectionTitle>
         </Content>
         <CustomAutofitGrid>
           {FEATURES.map((feature, idx) => {

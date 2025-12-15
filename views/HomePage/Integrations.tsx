@@ -57,28 +57,28 @@ const ICONS = [WebhookIcon, ApiIcon, ExcelIcon, AutomationIcon, ZapierIcon, Mobi
 
 const INTEGRATIONS = [
   {
-    name: 'Webhook',
-    description: 'Gerçek zamanlı bildirimler için webhook entegrasyonu',
+    name: 'WhatsApp',
+    description: 'Müşterilerinize WhatsApp üzerinden otomatik mesajlar gönderin',
   },
   {
-    name: 'API Erişimi',
-    description: 'RESTful API ile tam kontrol',
+    name: 'Email',
+    description: 'Profesyonel email kampanyaları tek tıkla',
   },
   {
-    name: 'Excel/CSV',
-    description: 'Kolay veri import ve export',
+    name: 'SMS',
+    description: 'Hızlı bilgilendirme için SMS entegrasyonu',
   },
   {
-    name: 'N8N Otomasyon',
-    description: 'N8N ile gelişmiş otomasyon',
+    name: 'Telefon',
+    description: 'Arama geçmişi ve notlar tek yerde',
   },
   {
-    name: 'Zapier',
-    description: 'Binlerce uygulama ile entegrasyon',
+    name: 'Sosyal Medya',
+    description: 'Facebook, Instagram mesajlarını tek panelden yönetin',
   },
   {
-    name: 'Mobil Uyumlu',
-    description: 'Her cihazdan erişim',
+    name: 'Canlı Chat',
+    description: 'Web sitenizden gelen mesajları takip edin',
   },
 ];
 
@@ -87,11 +87,11 @@ export default function Integrations() {
     <IntegrationsWrapper id="entegrasyonlar">
       <Container>
         <Content>
-          <CustomOverTitle>Entegrasyonlar</CustomOverTitle>
-          <SectionTitle>Mevcut Araçlarınızla Uyumlu Çalışın</SectionTitle>
+          <CustomOverTitle>Çok Kanallı İletişim</CustomOverTitle>
+          <SectionTitle>Tüm İletişim Kanallarınızı Tek Yerden Yönetin</SectionTitle>
           <Description>
-            CRMENTUM, API ve webhook desteği ile mevcut iş akışlarınıza kolayca entegre olur.
-            N8N, Zapier ve daha fazlası ile otomasyonlarınızı güçlendirin.
+            WhatsApp, email, SMS, telefon, sosyal medya - hangi kanaldan ulaşıldı, ne zaman yanıt verildi,
+            hepsi tek ekranda. Artık hiçbir kanal atlanmaz, hiçbir mesaj kaybolmaz.
           </Description>
         </Content>
         

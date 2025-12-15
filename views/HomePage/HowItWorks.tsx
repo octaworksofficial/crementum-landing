@@ -8,23 +8,23 @@ import { media } from 'utils/media';
 const STEPS = [
   {
     number: '01',
-    title: 'Kişilerinizi İçe Aktarın',
-    description: 'Excel veya CSV dosyalarınızdan müşteri listenizi kolayca içe aktarın. Manuel ekleme veya API entegrasyonu ile de kişilerinizi yönetin.',
+    title: 'Müşterilerinizi Sisteme Yükleyin',
+    description: 'Tüm müşteri verilerinizi tek bir yere toplayın. WhatsApp, email, telefon - tüm iletişim kanalları tek panelde. Artık hiçbir müşteri kaybolmaz.',
   },
   {
     number: '02',
-    title: 'Şablonlarınızı Oluşturun',
-    description: 'Sürükle-bırak editörümüzle profesyonel email şablonları tasarlayın veya hazır şablonlarımızdan birini özelleştirin.',
+    title: 'Yapay Zeka Kurumunuzu Öğrensin',
+    description: 'Markanızı, ürünlerinizi, hizmetlerinizi tanımlayın. CRMENTUM gerçek bir çalışan gibi kurumunuzu öğrenir, size özel iletişim önerileri oluşturur.',
   },
   {
     number: '03',
-    title: 'Kampanyalarınızı Planlayın',
-    description: 'Hedef kitlenizi segmente edin, gönderim zamanını ayarlayın ve kampanyanızı başlatın. Otomatik drip kampanyaları oluşturun.',
+    title: 'Otomasyonu Devreye Alın',
+    description: 'Hangi müşteriye ne zaman, hangi kanaldan ulaşılacağını CRMENTUM planlar. Siz sadece onaylayın. Personel olmadan 24/7 müşteri takibi başlasın.',
   },
   {
     number: '04',
-    title: 'Sonuçları Takip Edin',
-    description: 'Gerçek zamanlı açılma ve tıklama oranlarını izleyin. Detaylı raporlarla kampanya performansınızı optimize edin.',
+    title: 'Sonuçları İzleyin, Tasarruf Edin',
+    description: 'Kim ne zaman yanıt verdi, hangi fırsatlar yaklaşıyor, hangi müşteri takip bekliyor - hepsi tek ekranda. %80 personel tasarrufu ile daha çok kazanın.',
   },
 ];
 
@@ -77,7 +77,7 @@ export default function HowItWorks() {
       <Container>
         <Content>
           <CustomOverTitle>Nasıl Çalışır</CustomOverTitle>
-          <SectionTitle>4 Adımda Email Pazarlamaya Başlayın</SectionTitle>
+          <SectionTitle>4 Adımda İşletmenizi Dönüştürün</SectionTitle>
         </Content>
         <StepsGrid>
           {STEPS.map((step, idx) => {

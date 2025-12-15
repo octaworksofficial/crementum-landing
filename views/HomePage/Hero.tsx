@@ -13,14 +13,14 @@ export default function Hero() {
   return (
     <HeroWrapper>
       <Contents>
-        <CustomOverTitle>Profesyonel Email Pazarlama ve CRM Platformu</CustomOverTitle>
+        <CustomOverTitle>Yapay Zeka Destekli Müşteri İlişkileri Otomasyonu</CustomOverTitle>
         <Heading>
           Sizin için 24 saat çalışan, <HighlightedText>müşteri temsilcisi otomasyonu</HighlightedText>
         </Heading>
         <Description>
-          CRMENTUM ile müşteri ilişkilerinizi yönetin, kişiselleştirilmiş email kampanyaları oluşturun 
-          ve gerçek zamanlı analizlerle dönüşümlerinizi artırın. Türkiye'nin en kapsamlı 
-          email pazarlama ve CRM çözümü.
+          10 personel yerine 2 personel ile daha verimli çalışın. Hiçbir müşteri atlanmaz, hiçbir tarih karışmaz. 
+          Yapay zeka ile kurumunuzu tanır, gerçek insan gibi iletişim önerileri oluşturur. 
+          WhatsApp, email ve tüm iletişim kanallarınızı tek yerden yönetin.
         </Description>
         <CustomButtonGroup>
           <Button onClick={() => openDemoModal('hero', 'demo')}>
@@ -32,18 +32,18 @@ export default function Hero() {
         </CustomButtonGroup>
         <StatsContainer>
           <StatItem>
-            <StatNumber>10K+</StatNumber>
-            <StatLabel>Günlük Email</StatLabel>
+            <StatNumber>%80</StatNumber>
+            <StatLabel>Personel Tasarrufu</StatLabel>
           </StatItem>
           <StatDivider />
           <StatItem>
-            <StatNumber>500+</StatNumber>
-            <StatLabel>Mutlu Müşteri</StatLabel>
+            <StatNumber>%0</StatNumber>
+            <StatLabel>Unutulan Müşteri</StatLabel>
           </StatItem>
           <StatDivider />
           <StatItem>
-            <StatNumber>%99.9</StatNumber>
-            <StatLabel>Uptime</StatLabel>
+            <StatNumber>24/7</StatNumber>
+            <StatLabel>Kesintisiz Çalışma</StatLabel>
           </StatItem>
         </StatsContainer>
       </Contents>

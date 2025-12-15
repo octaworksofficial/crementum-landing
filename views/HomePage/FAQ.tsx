@@ -8,36 +8,36 @@ import { media } from 'utils/media';
 
 const FAQ_ITEMS = [
   {
-    question: 'CRMENTUM nasıl çalışır?',
-    answer: 'CRMENTUM, müşteri bilgilerinizi yönetmenizi, profesyonel email şablonları oluşturmanızı ve kampanyalar göndermenizi sağlayan bulut tabanlı bir platformdur. Kişilerinizi içe aktarın, şablonlarınızı tasarlayın ve kampanyalarınızı birkaç tıklamayla başlatın. Gerçek zamanlı analitiklerle sonuçlarınızı takip edin.',
+    question: 'Gerçekten personel sayısını azaltabilir miyim?',
+    answer: 'Evet! Müşterilerimiz ortalama %80 personel tasarrufu sağlıyor. Rutin müşteri takibi, hatırlatmalar, randevu yönetimi gibi işler otomatikleşince ekibiniz satışa ve stratejiye odaklanabiliyor. 10 kişilik ekipler 2-3 kişiyle aynı verimi alıyor.',
   },
   {
-    question: 'Ücretsiz deneme süresi var mı?',
-    answer: '14 gün boyunca tüm özellikleri ücretsiz deneyebilirsiniz. Kredi kartı bilgisi gerekmez. Deneme süresinin sonunda dilediğiniz planı seçebilir veya ücretsiz plan ile devam edebilirsiniz.',
+    question: 'Yapay zeka gerçekten kurumumuzu tanıyabilir mi?',
+    answer: 'Evet! Markanızı, ürünlerinizi, hizmetlerinizi, müşteri profilinizi sisteme tanımlarsınız. Yapay zeka geçmiş görüşmelerden öğrenir ve size özel iletişim önerileri oluşturur. Siz sadece onaylayıp gönderirsiniz. Gerçek insan gibi konuşur.',
   },
   {
-    question: 'Mevcut müşteri listemi nasıl içe aktarabilirim?',
-    answer: 'Excel veya CSV dosyalarınızı doğrudan platformumuza yükleyebilirsiniz. Sütun eşleştirme özelliğimiz ile verilerinizi kolayca düzenleyebilirsiniz. Ayrıca API üzerinden de toplu veri aktarımı yapabilirsiniz.',
+    question: 'Hangi iletişim kanallarını destekliyor?',
+    answer: 'WhatsApp, Email, SMS, Telefon, Facebook, Instagram, web sitesi canlı chat - tüm kanallar tek panelde. Kim hangi kanaldan ne zaman yazdı, hepsi tek ekranda. Artık hiçbir kanal atlanmaz, hiçbir mesaj kaybolmaz.',
   },
   {
-    question: 'Email gönderim limitleri nelerdir?',
-    answer: 'Ücretsiz planda aylık 1.000 email, Başlangıç planında 25.000 email, Profesyonel planda 100.000 email gönderebilirsiniz. Kurumsal plan için sınırsız gönderim imkanı sunuyoruz.',
+    question: 'Gerçekten hiçbir müşteri atlanmaz mı?',
+    answer: 'Hiçbir müşteri atlanmaz! İnsan yoğunlukta unutabilir, CRMENTUM unutmaz. Her müşteri otomatik takip edilir, randevular zamanında hatırlatılır, follow-up\'lar aksatılmaz. %100 müşteri takip garantisi.',
+  },
+  {
+    question: 'Tarih ve saat karışıklığı olur mu?',
+    answer: 'Asla! İnsan hatası yapar, CRMENTUM yapmaz. Randevular, takipler, hatırlatmalar tam zamanında gerçekleşir. Dakika bile şaşmaz. Müşterileriniz her zaman doğru zamanda bilgilendirilir.',
+  },
+  {
+    question: 'Mevcut sistemlerimle entegre olur mu?',
+    answer: 'Evet! Excel/CSV import, API entegrasyonu, Webhook desteği mevcut. Mevcut müşteri listenizi kolayca aktarabilir, kullandığınız diğer yazılımlarla entegre edebilirsiniz. Kurulum çok basit.',
+  },
+  {
+    question: 'Ne kadar sürede başlayabilirim?',
+    answer: 'Aynı gün! Müşteri listenizi yükleyin, markanızı tanımlayın, ilk otomatik mesajlarınızı ayarlayın. 1 saatte kurulum tamamlanır. Demo talep edin, size adım adım gösterelim.',
   },
   {
     question: 'Verilerim güvende mi?',
-    answer: 'Evet, veri güvenliği bizim için önceliktir. SSL şifreleme, JWT tabanlı kimlik doğrulama, bcrypt ile şifre hashleme ve düzenli yedekleme kullanıyoruz. Ayrıca KVKK uyumlu veri işleme politikalarımız mevcuttur.',
-  },
-  {
-    question: 'Hangi entegrasyonlar mevcut?',
-    answer: 'RESTful API, Webhook, N8N, Zapier entegrasyonları mevcuttur. Ayrıca Excel/CSV import-export desteği sunuyoruz. Özel entegrasyon ihtiyaçlarınız için API dokümantasyonumuza göz atabilir veya bizimle iletişime geçebilirsiniz.',
-  },
-  {
-    question: 'Planımı nasıl yükseltebilir veya düşürebilirim?',
-    answer: 'Hesap ayarlarınızdan dilediğiniz zaman planınızı değiştirebilirsiniz. Yükseltmelerde fark ücreti hesaplanır, düşürmelerde ise bir sonraki faturalama döneminden itibaren yeni plan geçerli olur.',
-  },
-  {
-    question: 'Teknik destek nasıl alırım?',
-    answer: 'Ücretsiz planda email desteği, Başlangıç planında öncelikli email desteği, Profesyonel planda telefon desteği ve Kurumsal planda 7/24 özel destek sunuyoruz. Ayrıca kapsamlı yardım merkezi ve dokümantasyonumuz mevcuttur.',
+    answer: 'Evet! KVKK uyumlu, şifreli veri saklama, yetkisiz erişime karşı korunma. Müşteri bilgileriniz bankacılık seviyesinde güvenlikle saklanır. Güvenlik sertifikalarımız mevcut.',
   },
 ];
 

@@ -7,23 +7,23 @@ import { media } from 'utils/media';
 
 const TESTIMONIALS = [
   {
-    content: 'CRMENTUM sayesinde email pazarlama kampanyalarımızı çok daha etkili bir şekilde yönetiyoruz. Açılma oranlarımız %40 arttı!',
+    content: '12 kişilik ekibimiz 4 kişiye düştü. Müşteri memnuniyeti arttı çünkü artık hiçbir müşteriyi atlamıyoruz. CRMENTUM sayesinde aylık 150.000 TL personel masrafından kurtulduk.',
     author: {
       name: 'Ahmet Yılmaz',
-      title: 'Pazarlama Müdürü',
+      title: 'Genel Müdür',
       company: 'TechStart A.Ş.',
     },
   },
   {
-    content: 'Müşteri segmentasyonu ve kişiselleştirilmiş kampanyalar oluşturmak hiç bu kadar kolay olmamıştı. Kesinlikle tavsiye ediyorum.',
+    content: 'Satış ekibim WhatsApp, email, telefonları karıştırırdı. Şimdi tüm müşteri geçmişi tek yerde. Yeni başlayan eleman bile deneyimli gibi görüşüyor. Satışlarımız 3 ayda ikiye katlandı.',
     author: {
       name: 'Zeynep Kaya',
-      title: 'E-ticaret Direktörü',
+      title: 'Satış Direktörü',
       company: 'ModaOnline',
     },
   },
   {
-    content: 'Detaylı analitik raporları sayesinde hangi kampanyaların işe yaradığını görmek ve stratejimizi buna göre ayarlamak çok kolay.',
+    content: 'Randevular artık hiç karışmıyor, müşteriler zamanında aranıyor. Yapay zeka bizim dilimizdeki mesajları kendisi hazırlıyor, biz sadece gönderiyoruz. İnanılmaz zaman tasarrufu!',
     author: {
       name: 'Mehmet Demir',
       title: 'Kurucu',
@@ -33,10 +33,10 @@ const TESTIMONIALS = [
 ];
 
 const STATS = [
-  { number: '10.000+', label: 'Günlük Gönderilen Email' },
-  { number: '%42', label: 'Ortalama Açılma Oranı' },
-  { number: '500+', label: 'Aktif Müşteri' },
-  { number: '%99.9', label: 'Uptime Garantisi' },
+  { number: '%80', label: 'Personel Tasarrufu' },
+  { number: '%100', label: 'Müşteri Takip Oranı' },
+  { number: '24/7', label: 'Kesintisiz Çalışma' },
+  { number: '%0', label: 'İnsan Hatası' },
 ];
 
 export default function Testimonials() {
@@ -44,8 +44,8 @@ export default function Testimonials() {
     <TestimonialsWrapper>
       <Container>
         <Content>
-          <CustomOverTitle>Müşterilerimiz Ne Diyor</CustomOverTitle>
-          <SectionTitle>Binlerce İşletme CRMENTUM'a Güveniyor</SectionTitle>
+          <CustomOverTitle>Müşterilerimiz Neler Kazandı</CustomOverTitle>
+          <SectionTitle>Gerçek işletmelerden gerçek sonuçlar</SectionTitle>
         </Content>
 
         <StatsGrid>
