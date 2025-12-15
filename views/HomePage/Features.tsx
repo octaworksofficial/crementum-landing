@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import AutofitGrid from 'components/AutofitGrid';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
@@ -126,6 +125,15 @@ const FEATURES = [
 ];
 
 export default function Features() {
+  const featureImages = [
+    '/crmentum-photos/1.jpg',
+    '/crmentum-photos/2.jpg',
+    '/crmentum-photos/3.jpg',
+    '/crmentum-photos/4.jpg',
+    '/crmentum-photos/5.jpg',
+    '/crmentum-photos/6.jpg',
+  ];
+
   return (
     <FeaturesWrapper id="ozellikler">
       <Container>
@@ -133,20 +141,26 @@ export default function Features() {
           <CustomOverTitle>Neler Kazanacaksınız?</CustomOverTitle>
           <SectionTitle>İşletmenizi dönüştüren özellikler</SectionTitle>
         </Content>
-        <CustomAutofitGrid>
-          {FEATURES.map((feature, idx) => {
+        <FeaturesGrid>
+          {FEATURES.slice(0, 6).map((feature, idx) => {
             const IconComponent = ICONS[idx];
             return (
               <FeatureCard key={idx}>
-                <FeatureIconWrapper>
-                  <IconComponent />
-                </FeatureIconWrapper>
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
+                <FeatureImageWrapper>
+                  <FeatureImage src={featureImages[idx]} alt={feature.title} />
+                  <ImageOverlay />
+                  <FeatureIconOverlay>
+                    <IconComponent />
+                  </FeatureIconOverlay>
+                </FeatureImageWrapper>
+                <FeatureContent>
+                  <FeatureTitle>{feature.title}</FeatureTitle>
+                  <FeatureDescription>{feature.description}</FeatureDescription>
+                </FeatureContent>
               </FeatureCard>
             );
           })}
-        </CustomAutofitGrid>
+        </FeaturesGrid>
       </Container>
     </FeaturesWrapper>
   );
@@ -165,55 +179,107 @@ const CustomOverTitle = styled(OverTitle)`
   margin-bottom: 1.5rem;
 `;
 
-const CustomAutofitGrid = styled(AutofitGrid)`
-  --autofit-grid-item-size: 35rem;
+const FeaturesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 
+  ${media('<=desktop')} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   ${media('<=tablet')} {
-    --autofit-grid-item-size: 100%;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 `;
 
 const FeatureCard = styled.div`
-  padding: 3rem;
   background: rgb(var(--cardBackground));
-  border-radius: 1.2rem;
-  box-shadow: var(--shadow-md);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(var(--text), 0.06);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(24, 144, 255, 0.15);
   }
 `;
 
-const FeatureIconWrapper = styled.div`
-  width: 6rem;
-  height: 6rem;
+const FeatureImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 28rem;
+  overflow: hidden;
+
+  ${media('<=tablet')} {
+    height: 22rem;
+  }
+`;
+
+const FeatureImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+
+  ${FeatureCard}:hover & {
+    transform: scale(1.05);
+  }
+`;
+
+const ImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+`;
+
+const FeatureIconOverlay = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(24, 144, 255, 0.15) 0%, rgba(24, 144, 255, 0.05) 100%);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
   svg {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     color: rgb(24, 144, 255);
   }
 `;
 
+const FeatureContent = styled.div`
+  padding: 2.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 const FeatureTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   color: rgb(var(--text));
+  line-height: 1.3;
 `;
 
 const FeatureDescription = styled.p`
   font-size: 1.5rem;
-  line-height: 1.7;
-  opacity: 0.8;
+  line-height: 1.8;
+  color: rgba(var(--text), 0.75);
+  flex: 1;
 `;
