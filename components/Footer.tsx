@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import { FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
+import { LinkedinIcon } from 'react-share';
 import styled from 'styled-components';
 import Container from 'components/Container';
 import { media } from 'utils/media';
@@ -14,9 +14,9 @@ const footerItems: FooterItems = [
     title: 'Ürün',
     items: [
       { title: 'Özellikler', href: '/#ozellikler' },
-      { title: 'Çözümler', href: '/#planlar' },
       { title: 'Nasıl Çalışır', href: '/#nasil-calisir' },
       { title: 'Entegrasyonlar', href: '/#entegrasyonlar' },
+      { title: 'SSS', href: '/#sss' },
     ],
   },
   {
@@ -25,16 +25,6 @@ const footerItems: FooterItems = [
       { title: 'Hakkımızda', href: '/about' },
       { title: 'İletişim', href: '/contact' },
       { title: 'Blog', href: '/blog' },
-      { title: 'Kariyer', href: '/careers' },
-    ],
-  },
-  {
-    title: 'Destek',
-    items: [
-      { title: 'Yardım Merkezi', href: '/help' },
-      { title: 'API Dokümantasyonu', href: '/docs' },
-      { title: 'SSS', href: '/#sss' },
-      { title: 'Durum', href: '/status' },
     ],
   },
   {
@@ -43,7 +33,6 @@ const footerItems: FooterItems = [
       { title: 'Gizlilik Politikası', href: '/privacy-policy' },
       { title: 'Kullanım Şartları', href: '/terms' },
       { title: 'Çerez Politikası', href: '/cookies-policy' },
-      { title: 'KVKK', href: '/kvkk' },
     ],
   },
 ];
@@ -59,23 +48,9 @@ export default function Footer() {
         </ListContainer>
         <BottomBar>
           <ShareBar>
-            <NextLink href="https://www.twitter.com/crmentum" passHref>
-              <a>
-                <TwitterIcon size={50} round={true} />
-              </a>
-            </NextLink>
-
-            <NextLink href="https://www.facebook.com/crmentum" passHref>
-              <a>
-                <FacebookIcon size={50} round={true} />
-              </a>
-            </NextLink>
-
-            <NextLink href="https://www.linkedin.com/company/cerilas" passHref>
-              <a>
-                <LinkedinIcon size={50} round={true} />
-              </a>
-            </NextLink>
+            <a href="https://www.linkedin.com/company/cerilas" target="_blank" rel="noopener noreferrer">
+              <LinkedinIcon size={50} round={true} />
+            </a>
           </ShareBar>
           <Copyright>&copy; {new Date().getFullYear()} CERİLAS YÜKSEK TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ. Tüm hakları saklıdır.</Copyright>
         </BottomBar>
