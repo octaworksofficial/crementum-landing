@@ -17,15 +17,15 @@ export default function Homepage() {
         <title>{EnvVars.SITE_NAME}</title>
         <meta
           name="description"
-          content="CRMENTUM - Profesyonel Email Pazarlama ve CRM Platformu. Müşterilerinizle güçlü ilişkiler kurun, etkili kampanyalar oluşturun. Türkiye'nin en kapsamlı email pazarlama çözümü."
+          content="CRMENTUM - Sizin için 24 saat çalışan Müsteri Temsilcisi otomasyonu. Müşterilerinizle güçlü ilişkiler kurun, etkili kampanyalar oluşturun. Türkiye'nin en kapsamlı email pazarlama çözümü."
         />
         <meta name="keywords" content="email pazarlama, CRM, müşteri ilişkileri yönetimi, email kampanyası, drip kampanya, email takip, analitik" />
         <meta property="og:title" content="CRMENTUM - Profesyonel Email Pazarlama Platformu" />
-        <meta property="og:description" content="Müşterilerinizle güçlü ilişkiler kurun, etkili email kampanyaları oluşturun." />
+        <meta property="og:description" content="Sizin için 24 saat çalışan Müsteri Temsilcisi otomasyonu" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="CRMENTUM - Profesyonel Email Pazarlama Platformu" />
-        <meta name="twitter:description" content="Müşterilerinizle güçlü ilişkiler kurun, etkili email kampanyaları oluşturun." />
+        <meta name="twitter:description" content="Sizin için 24 saat çalışan Müsteri Temsilcisi otomasyonu" />
         <link rel="canonical" href="https://crmentum.com" />
       </Head>
       <HomepageWrapper>

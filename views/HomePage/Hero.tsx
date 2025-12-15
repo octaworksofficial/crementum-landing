@@ -15,7 +15,7 @@ export default function Hero() {
       <Contents>
         <CustomOverTitle>Profesyonel Email Pazarlama ve CRM Platformu</CustomOverTitle>
         <Heading>
-          <span>Müşterilerinizle</span> güçlü ilişkiler kurun, <HighlightedText>etkili kampanyalar</HighlightedText> oluşturun
+          Sizin için 24 saat çalışan, <HighlightedText>müşteri temsilcisi otomasyonu</HighlightedText>
         </Heading>
         <Description>
           CRMENTUM ile müşteri ilişkilerinizi yönetin, kişiselleştirilmiş email kampanyaları oluşturun 
@@ -147,7 +147,7 @@ const HeroWrapper = styled(Container)`
 
 const Contents = styled.div`
   flex: 1;
-  max-width: 55rem;
+  max-width: 70rem;
 
   ${media('<=desktop')} {
     max-width: 100%;
