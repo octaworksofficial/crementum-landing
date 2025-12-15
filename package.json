@@ -68,6 +68,7 @@
     "remark-gfm": "^3.0.1",
     "remark-sectionize": "^2.0.0",
     "remark-slug": "^7.0.1",
+    "sharp": "^0.34.5",
     "typescript": "5.1.6"
   }
 }
