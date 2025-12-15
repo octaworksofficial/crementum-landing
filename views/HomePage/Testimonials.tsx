@@ -7,7 +7,7 @@ import { media } from 'utils/media';
 
 const TESTIMONIALS = [
   {
-    content: '12 kişilik ekibimiz 4 kişiye düştü. Müşteri memnuniyeti arttı çünkü artık hiçbir müşteriyi atlamıyoruz. CRMENTUM sayesinde aylık 150.000 TL personel masrafından kurtulduk.',
+    content: 'Ekip verimliliğimiz inanılmaz arttı. Müşteri memnuniyeti de yükseldi çünkü artık hiçbir müşteriyi atlama riski yok. CRMENTUM ile operasyonel maliyetlerimizi önemli ölçüde düşürdük.',
     author: {
       name: 'Ahmet Yılmaz',
       title: 'Genel Müdür',
@@ -15,7 +15,7 @@ const TESTIMONIALS = [
     },
   },
   {
-    content: 'Satış ekibim WhatsApp, email, telefonları karıştırırdı. Şimdi tüm müşteri geçmişi tek yerde. Yeni başlayan eleman bile deneyimli gibi görüşüyor. Satışlarımız 3 ayda ikiye katlandı.',
+    content: 'Tüm iletişim kanallarımızı tek yerden yönetmek oyunun kurallarını değiştirdi. Müşteri geçmişine anında erişim sayesinde ekip performansımız katlandı. Satışlarımız 3 ayda ikiye katlandı.',
     author: {
       name: 'Zeynep Kaya',
       title: 'Satış Direktörü',
@@ -23,7 +23,7 @@ const TESTIMONIALS = [
     },
   },
   {
-    content: 'Randevular artık hiç karışmıyor, müşteriler zamanında aranıyor. Yapay zeka bizim dilimizdeki mesajları kendisi hazırlıyor, biz sadece gönderiyoruz. İnanılmaz zaman tasarrufu!',
+    content: 'Randevular ve takipler artık otomatik yürüyor. Yapay zeka markanızın diline uygun mesajlar hazırlıyor, biz sadece onaylıyoruz. Ekibimizin zamanını daha stratejik işlere ayırabiliyoruz.',
     author: {
       name: 'Mehmet Demir',
       title: 'Kurucu',
@@ -33,10 +33,10 @@ const TESTIMONIALS = [
 ];
 
 const STATS = [
-  { number: '%80', label: 'Personel Tasarrufu' },
+  { number: '%100', label: 'Verimlilik Artışı' },
   { number: '%100', label: 'Müşteri Takip Oranı' },
   { number: '24/7', label: 'Kesintisiz Çalışma' },
-  { number: '%0', label: 'İnsan Hatası' },
+  { number: '%0', label: 'Unutulan Müşteri' },
 ];
 
 export default function Testimonials() {

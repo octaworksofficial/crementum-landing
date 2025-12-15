@@ -86,12 +86,12 @@ const FEATURES = [
   {
     title: 'Hiçbir Müşteri Atlanmaz',
     description:
-      'Satış elemanlarınız yoğunlukta bir müşteriyi atlayabilir, CRMENTUM atlamaz. Her müşteri otomatik takip edilir, hiçbiri unutulmaz. 10 personel yerine 2 personel ile daha verimli çalışın.',
+      'Yoğun iş temposunda müşterileri takip etmek zorlaşabilir. CRMENTUM, her müşteriyi otomatik olarak takip eder ve hiçbirinin unutulmamasını sağlar. Ekip verimliliğinizi artırın, müşteri memnuniyetini maksimize edin.',
   },
   {
     title: 'Tarihler ve Saatler Asla Karışmaz',
     description:
-      'İnsan hatası yapabilir, CRMENTUM yapmaz. Randevular, takipler, hatırlatmalar tam zamanında gerçekleşir. Dakika bile şaşmaz, müşterileriniz her zaman doğru zamanda bilgilendirilir.',
+      'Randevular, takipler ve hatırlatmalar tam zamanında gerçekleşir. Manuel takip sistemlerinin yarattığı karmaşa artık yok. Müşterileriniz her zaman doğru zamanda bilgilendirilir, profesyonel imajınız güçlenir.',
   },
   {
     title: 'Yapay Zeka ile Kurumunuzu Tanır',
@@ -101,22 +101,22 @@ const FEATURES = [
   {
     title: 'Çok Kanallı İletişim Yönetimi',
     description:
-      'Sadece email değil! WhatsApp, SMS, telefon - tüm iletişim kanallarınızı tek yerden yönetin. Hangi kanaldan ulaşıldı, ne zaman yanıt verildi, hepsi tek ekranda.',
+      'WhatsApp, email, SMS, telefon - tüm iletişim kanallarınızı tek yerden yönetin. Hangi kanaldan ulaşıldı, ne zaman yanıt verildi, hepsi tek ekranda. Dağınık iletişim kanallarını tek bir merkezde toplayın.',
   },
   {
     title: 'Tüm Müşteri Geçmişi Tek Yerde',
     description:
-      'Kim ne attı, hangi kanallardan ulaşıldı, kaç defa konuşuldu - tüm müşteri geçmişi tek bir panelde. Yeni çalışanlar bile sanki yıllardır müşteriyi tanıyormuş gibi görüşebilir.',
+      'Kim ne attı, hangi kanallardan ulaşıldı, kaç defa konuşuldu - tüm müşteri geçmişi tek bir panelde. Ekip üyeleriniz müşteri geçmişine anında erişir, daha bilinçli görüşmeler yapar.',
   },
   {
     title: '24/7 Kesintisiz Çalışma',
     description:
-      'Personel izne çıkar, hastalanır, işten ayrılır. CRMENTUM hep burada. Gece yarısı gelen müşteri talebi bile sabah ilk iş karşılanır. Hiçbir fırsat kaçmaz.',
+      'İş akışınız kesintisiz devam eder. Gece yarısı gelen müşteri talepleri bile sabah ilk iş karşılanmaya hazır. Otomatik sistemler sayesinde hiçbir fırsat kaçmaz, iş sürekliliği sağlanır.',
   },
   {
-    title: 'Maliyet Tasarrufu Sağlayın',
+    title: 'Operasyonel Verimlilik',
     description:
-      'Yeni personel alımı, eğitim, maaş, sigorta - hepsi maliyet. CRMENTUM ile %80\'e varan personel tasarrufu yapın. Ekibiniz satışa odaklansın, rutin işler otomasyona kalsın.',
+      'Rutin işleri otomatikleştirerek ekibinizin zamanını optimize edin. Ekibiniz stratejik işlere ve satışa odaklanırken, rutin müşteri takibi otomatik olarak yürür. İş gücünüzü en değerli alanlarda kullanın.',
   },
   {
     title: 'Verileriniz Güvende',

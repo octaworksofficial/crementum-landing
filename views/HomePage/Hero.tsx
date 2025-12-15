@@ -18,9 +18,9 @@ export default function Hero() {
           Sizin için 24 saat çalışan, <HighlightedText>müşteri temsilcisi otomasyonu</HighlightedText>
         </Heading>
         <Description>
-          10 personel yerine 2 personel ile daha verimli çalışın. Hiçbir müşteri atlanmaz, hiçbir tarih karışmaz. 
-          Yapay zeka ile kurumunuzu tanır, gerçek insan gibi iletişim önerileri oluşturur. 
-          WhatsApp, email ve tüm iletişim kanallarınızı tek yerden yönetin.
+          Müşteri iletişimini daha az personelle, daha düzenli ve daha verimli yönetin. 
+          CRM süreçlerinizi rutine oturtun; otomasyonlarla tüm müşteri etkileşimlerini tek bir çerçevede toplayın. 
+          Müşteri arşivinizi en değerli şekilde kullanın, hiçbir detayı kaçırmayın ve her müşteriyle maksimum verimle çalışın.
         </Description>
         <CustomButtonGroup>
           <Button onClick={() => openDemoModal('hero', 'demo')}>
@@ -32,8 +32,8 @@ export default function Hero() {
         </CustomButtonGroup>
         <StatsContainer>
           <StatItem>
-            <StatNumber>%80</StatNumber>
-            <StatLabel>Personel Tasarrufu</StatLabel>
+            <StatNumber>%100</StatNumber>
+            <StatLabel>Verimlilik Artışı</StatLabel>
           </StatItem>
           <StatDivider />
           <StatItem>

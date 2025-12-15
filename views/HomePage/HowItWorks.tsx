@@ -9,22 +9,22 @@ const STEPS = [
   {
     number: '01',
     title: 'Müşterilerinizi Sisteme Yükleyin',
-    description: 'Tüm müşteri verilerinizi tek bir yere toplayın. WhatsApp, email, telefon - tüm iletişim kanalları tek panelde. Artık hiçbir müşteri kaybolmaz.',
+    description: 'Tüm müşteri verilerinizi tek bir yere toplayın. WhatsApp, email, telefon - tüm iletişim kanallarını tek panelde birleştirin. Dağınık bilgiler artık geçmişte kalsın.',
   },
   {
     number: '02',
     title: 'Yapay Zeka Kurumunuzu Öğrensin',
-    description: 'Markanızı, ürünlerinizi, hizmetlerinizi tanımlayın. CRMENTUM gerçek bir çalışan gibi kurumunuzu öğrenir, size özel iletişim önerileri oluşturur.',
+    description: 'Markanızı, ürünlerinizi, hizmetlerinizi tanımlayın. CRMENTUM kurumunuzu öğrenir ve size özel, markanızın sesini yansıtan iletişim önerileri oluşturur.',
   },
   {
     number: '03',
     title: 'Otomasyonu Devreye Alın',
-    description: 'Hangi müşteriye ne zaman, hangi kanaldan ulaşılacağını CRMENTUM planlar. Siz sadece onaylayın. Personel olmadan 24/7 müşteri takibi başlasın.',
+    description: 'Hangi müşteriye ne zaman, hangi kanaldan ulaşılacağını CRMENTUM planlar. Siz sadece onaylayın. Rutin işler otomatikleşirken, ekibiniz stratejik alanlara odaklanır.',
   },
   {
     number: '04',
-    title: 'Sonuçları İzleyin, Tasarruf Edin',
-    description: 'Kim ne zaman yanıt verdi, hangi fırsatlar yaklaşıyor, hangi müşteri takip bekliyor - hepsi tek ekranda. %80 personel tasarrufu ile daha çok kazanın.',
+    title: 'Sonuçları İzleyin, Optimize Edin',
+    description: 'Kim ne zaman yanıt verdi, hangi fırsatlar yaklaşıyor, hangi müşteri takip bekliyor - hepsi tek ekranda. Verimlilik artışınızı gerçek zamanlı takip edin.',
   },
 ];
 
