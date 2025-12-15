@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Page from 'components/Page';
 import Container from 'components/Container';
+import Page from 'components/Page';
 import { media } from 'utils/media';
 
 export default function AboutPage() {
@@ -81,12 +81,12 @@ export default function AboutPage() {
               bir teknoloji şirketidir.
             </Paragraph>
             <Paragraph>
-              "Dream, Design, Disrupt" (Hayal Et, Tasarla, Dönüştür) mottosuyla yola çıkan CERİLAS, 
+              &ldquo;Dream, Design, Disrupt&rdquo; (Hayal Et, Tasarla, Dönüştür) mottosuyla yola çıkan CERİLAS, 
               açık inovasyon felsefesiyle üniversiteler, özel sektör şirketleri ve topluluklar ile 
               iş birliği yaparak yıkıcı inovasyon projelerine imza atıyor.
             </Paragraph>
             <Paragraph>
-              Şirketimiz, TÜBİTAK BiGG programı destekli projeleriyle de tanınmakta ve Türkiye'nin 
+              Şirketimiz, TÜBİTAK BiGG programı destekli projeleriyle de tanınmakta ve Türkiye&apos;nin 
               teknoloji ekosisteminde aktif rol almaktadır.
             </Paragraph>
 
@@ -156,7 +156,7 @@ export default function AboutPage() {
                 </ContactIcon>
                 <ContactText>
                   <a href="https://www.linkedin.com/company/cerilas" target="_blank" rel="noopener noreferrer">
-                    LinkedIn'de takip edin
+                    LinkedIn&apos;de takip edin
                   </a>
                 </ContactText>
               </ContactItem>
