@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
+import TrueFocus from 'components/TrueFocus';
 import { media } from 'utils/media';
 
 // SVG Icons
@@ -88,7 +89,9 @@ export default function Integrations() {
       <Container>
         <Content>
           <CustomOverTitle>Çok Kanallı İletişim</CustomOverTitle>
-          <SectionTitle>Tüm İletişim Kanallarınızı Tek Yerden Yönetin</SectionTitle>
+          <TrueFocus sentence="Tüm Kanallarınızı Tek Noktadan Yönetin" manualMode={true} blurAmount={3} borderColor="#1890ff">
+            <SectionTitle>Tüm Kanallarınızı Tek Noktadan Yönetin</SectionTitle>
+          </TrueFocus>
           <Description>
             WhatsApp, email, SMS, telefon, sosyal medya - hangi kanaldan ulaşıldı, ne zaman yanıt verildi,
             hepsi tek ekranda. Artık hiçbir kanal atlanmaz, hiçbir mesaj kaybolmaz.
@@ -114,7 +117,7 @@ export default function Integrations() {
           <ApiContent>
             <ApiTitle>Güçlü API ile Sınırsız Olasılıklar</ApiTitle>
             <ApiDescription>
-              RESTful API'miz ile CRMENTUM'u istediğiniz şekilde özelleştirin.
+              RESTful API&apos;miz ile CRMENTUM&apos;u istediğiniz şekilde özelleştirin.
               Detaylı dokümantasyon ve örnek kodlarla hızlıca başlayın.
             </ApiDescription>
             <CodeBlock>
@@ -132,11 +135,30 @@ export default function Integrations() {
 
 const IntegrationsWrapper = styled.div`
   padding: 10rem 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 60rem;
+    height: 60rem;
+    background: radial-gradient(
+      circle,
+      rgba(24, 144, 255, 0.03) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
 `;
 
 const Content = styled.div`
   text-align: center;
   margin-bottom: 6rem;
+  position: relative;
+  z-index: 1;
 `;
 
 const CustomOverTitle = styled(OverTitle)`
@@ -156,6 +178,8 @@ const IntegrationsGrid = styled.div`
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
   margin-bottom: 8rem;
+  position: relative;
+  z-index: 1;
 
   ${media('<=desktop')} {
     grid-template-columns: repeat(3, 1fr);
@@ -169,31 +193,93 @@ const IntegrationsGrid = styled.div`
 const IntegrationCard = styled.div`
   text-align: center;
   padding: 2.5rem 1.5rem;
-  background: rgb(var(--cardBackground));
-  border-radius: 1rem;
-  border: 1px solid rgba(var(--text), 0.06);
-  transition: all 0.3s ease;
+  background: rgba(var(--cardBackground), 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(var(--text), 0.08);
+  box-shadow: var(--shadow-md);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    padding: 2px;
+    background: linear-gradient(135deg, rgb(var(--primary)), #096dd9);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-glow);
+    
+    &::before,
+    &::after {
+      opacity: 1;
+    }
   }
 `;
 
 const IntegrationIconWrapper = styled.div`
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(24, 144, 255, 0.15) 0%, rgba(24, 144, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(24, 144, 255, 0.2) 0%, rgba(24, 144, 255, 0.08) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  transition: all 0.5s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(var(--primary)), #096dd9);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+  }
+  
+  ${IntegrationCard}:hover & {
+    transform: scale(1.2) rotate(10deg);
+    
+    &::before {
+      opacity: 0.3;
+    }
+  }
   
   svg {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     color: rgb(24, 144, 255);
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  ${IntegrationCard}:hover & svg {
+    transform: scale(1.1);
+    color: rgb(var(--primary));
   }
 `;
 
@@ -202,19 +288,51 @@ const IntegrationName = styled.h4`
   font-weight: 700;
   margin-bottom: 0.8rem;
   color: rgb(var(--text));
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+  
+  ${IntegrationCard}:hover & {
+    color: rgb(var(--primary));
+  }
 `;
 
 const IntegrationDescription = styled.p`
   font-size: 1.2rem;
   opacity: 0.7;
   line-height: 1.5;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  
+  ${IntegrationCard}:hover & {
+    opacity: 0.95;
+  }
 `;
 
 const ApiSection = styled.div`
-  background: linear-gradient(135deg, rgba(24, 144, 255, 0.05) 0%, rgba(24, 144, 255, 0.02) 100%);
-  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(24, 144, 255, 0.08) 0%, rgba(24, 144, 255, 0.03) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
   padding: 5rem;
-  border: 1px solid rgba(24, 144, 255, 0.1);
+  border: 1px solid rgba(24, 144, 255, 0.15);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 50rem;
+    height: 50rem;
+    background: radial-gradient(
+      circle,
+      rgba(24, 144, 255, 0.1) 0%,
+      transparent 70%
+    );
+  }
 
   ${media('<=tablet')} {
     padding: 3rem 2rem;
@@ -223,13 +341,18 @@ const ApiSection = styled.div`
 
 const ApiContent = styled.div`
   text-align: center;
+  position: relative;
+  z-index: 1;
 `;
 
 const ApiTitle = styled.h3`
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: rgb(var(--text));
+  background: linear-gradient(135deg, rgb(var(--text)) 0%, rgb(var(--primary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
 const ApiDescription = styled.p`
@@ -241,22 +364,53 @@ const ApiDescription = styled.p`
 `;
 
 const CodeBlock = styled.div`
-  background: rgba(var(--text), 0.05);
-  border-radius: 0.8rem;
-  padding: 2rem 3rem;
+  background: rgba(var(--text), 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 1.2rem;
+  padding: 2.5rem 3.5rem;
   display: inline-block;
   text-align: left;
-  font-family: 'Fira Code', monospace;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  border: 1px solid rgba(var(--text), 0.1);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.05) 0%, transparent 100%);
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(var(--primary), 0.3);
+  }
 `;
 
 const CodeLine = styled.div`
   font-size: 1.4rem;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
   color: rgb(var(--text));
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateX(5px);
+    color: rgb(var(--primary));
+  }
 `;
 
 const Keyword = styled.span`
-  color: rgb(var(--primary));
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 600;
   margin-right: 1rem;
+  text-shadow: 0 0 20px rgba(24, 144, 255, 0.5);
 `;

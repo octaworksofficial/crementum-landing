@@ -16,6 +16,7 @@ import { GlobalStyle } from 'components/GlobalStyles';
 import Navbar from 'components/Navbar';
 import NavigationDrawer from 'components/NavigationDrawer';
 import NewsletterModal from 'components/NewsletterModal';
+import TargetCursor from 'components/TargetCursor';
 import WaveCta from 'components/WaveCta';
 import { DemoModalContextProvider, useDemoModalContext } from 'contexts/demo-modal.context';
 import { NewsletterModalContextProvider, useNewsletterModalContext } from 'contexts/newsletter-modal.context';
@@ -51,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ColorModeScript />
       <GlobalStyle />
+      <TargetCursor targetSelector="button, a, [role='button'], .cursor-target" />
 
       <Providers>
         <Modals />

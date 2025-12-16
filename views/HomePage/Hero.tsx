@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Button from 'components/Button';
 import ButtonGroup from 'components/ButtonGroup';
 import Container from 'components/Container';
+import FloatingParticles from 'components/FloatingParticles';
 import OverTitle from 'components/OverTitle';
+import Spotlight from 'components/Spotlight';
 import { useDemoModalContext } from 'contexts/demo-modal.context';
 import { media } from 'utils/media';
 
@@ -12,16 +14,27 @@ export default function Hero() {
 
   return (
     <HeroWrapper>
+      <Spotlight />
+      <FloatingParticles count={25} />
       <Contents>
         <CustomOverTitle>Yapay Zeka Destekli Müşteri İlişkileri Otomasyonu</CustomOverTitle>
         <Heading>
           Sizin için 24 saat çalışan, <HighlightedText>müşteri temsilcisi otomasyonu</HighlightedText>
         </Heading>
-        <Description>
-          Müşteri iletişimini daha az personelle, daha düzenli ve daha verimli yönetin. 
-          CRM süreçlerinizi rutine oturtun; otomasyonlarla tüm müşteri etkileşimlerini tek bir çerçevede toplayın. 
-          Müşteri arşivinizi en değerli şekilde kullanın, hiçbir detayı kaçırmayın ve her müşteriyle maksimum verimle çalışın.
-        </Description>
+        <BulletList>
+          <BulletItem>
+            <BulletIcon>✓</BulletIcon>
+            <BulletText>Müşteri iletişimini daha az personelle, daha düzenli ve daha verimli yönetin</BulletText>
+          </BulletItem>
+          <BulletItem>
+            <BulletIcon>✓</BulletIcon>
+            <BulletText>CRM süreçlerinizi rutine oturtun; tüm müşteri etkileşimlerini tek çerçevede toplayın</BulletText>
+          </BulletItem>
+          <BulletItem>
+            <BulletIcon>✓</BulletIcon>
+            <BulletText>Müşteri arşivinizi en değerli şekilde kullanın, hiçbir detayı kaçırmayın</BulletText>
+          </BulletItem>
+        </BulletList>
         <CustomButtonGroup>
           <Button onClick={() => openDemoModal('hero', 'demo')}>
             Ücretsiz Keşfet <span>&rarr;</span>
@@ -111,6 +124,7 @@ function HeroIllustration() {
                 key={index} 
                 active={activeItem === index}
                 onClick={() => setActiveItem(index)}
+                className="cursor-target"
               >
                 {item.icon} {item.label}
               </SidebarItem>
@@ -137,6 +151,8 @@ const HeroWrapper = styled(Container)`
   display: flex;
   padding-top: 5rem;
   align-items: center;
+  position: relative;
+  overflow: visible;
 
   ${media('<=desktop')} {
     padding-top: 1rem;
@@ -148,6 +164,8 @@ const HeroWrapper = styled(Container)`
 const Contents = styled.div`
   flex: 1;
   max-width: 70rem;
+  position: relative;
+  z-index: 1;
 
   ${media('<=desktop')} {
     max-width: 100%;
@@ -156,6 +174,32 @@ const Contents = styled.div`
 
 const CustomButtonGroup = styled(ButtonGroup)`
   margin-top: 4rem;
+  
+  button {
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    
+    &:first-child {
+      background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+      box-shadow: var(--shadow-glow);
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-glow-lg);
+      }
+    }
+    
+    &:last-child {
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(var(--primary), 0.3);
+      
+      &:hover {
+        transform: translateY(-3px);
+        border-color: rgb(var(--primary));
+        background: rgba(var(--primary), 0.05);
+      }
+    }
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -163,6 +207,8 @@ const ImageContainer = styled.div`
   flex: 1;
   justify-content: flex-end;
   align-items: flex-start;
+  position: relative;
+  z-index: 1;
 
   ${media('<=desktop')} {
     margin-top: 3rem;
@@ -181,6 +227,60 @@ const Description = styled.p`
   }
 `;
 
+const BulletList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+`;
+
+const BulletItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateX(5px);
+  }
+`;
+
+const BulletIcon = styled.div`
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 2.4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+  transition: all 0.3s ease;
+  
+  ${BulletItem}:hover & {
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0 6px 20px rgba(24, 144, 255, 0.5);
+  }
+`;
+
+const BulletText = styled.p`
+  font-size: 1.7rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  
+  ${BulletItem}:hover & {
+    opacity: 1;
+  }
+  
+  ${media('<=desktop')} {
+    font-size: 1.5rem;
+  }
+`;
+
 const CustomOverTitle = styled(OverTitle)`
   margin-bottom: 2rem;
 `;
@@ -191,6 +291,7 @@ const Heading = styled.h1`
   line-height: 1.2;
   margin-bottom: 3rem;
   letter-spacing: -0.03em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 
   ${media('<=tablet')} {
     font-size: 3.6rem;
@@ -200,9 +301,22 @@ const Heading = styled.h1`
 
 const HighlightedText = styled.span`
   color: rgb(var(--primary));
-  background: linear-gradient(135deg, rgba(24, 144, 255, 0.1) 0%, rgba(24, 144, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(24, 144, 255, 0.15) 0%, rgba(24, 144, 255, 0.08) 100%);
   padding: 0 0.5rem;
   border-radius: 0.4rem;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 4px 20px rgba(24, 144, 255, 0.15);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.2) 0%, rgba(24, 144, 255, 0.1) 100%);
+    border-radius: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 `;
 
 const StatsContainer = styled.div`
@@ -221,12 +335,35 @@ const StatsContainer = styled.div`
 const StatItem = styled.div`
   text-align: center;
   padding: 0 2rem;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1rem;
+    background: radial-gradient(circle, rgba(24, 144, 255, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+  }
 `;
 
 const StatNumber = styled.div`
   font-size: 2.8rem;
   font-weight: 700;
-  color: rgb(var(--primary));
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(24, 144, 255, 0.2);
 `;
 
 const StatLabel = styled.div`
@@ -252,11 +389,37 @@ const IllustrationWrapper = styled.div`
 `;
 
 const DashboardMockup = styled.div`
-  background: rgb(var(--cardBackground));
-  border-radius: 1.2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background: rgba(var(--cardBackground), 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 1.6rem;
+  box-shadow: var(--shadow-2xl);
   overflow: hidden;
   border: 1px solid rgba(var(--text), 0.1);
+  position: relative;
+  transition: all 0.4s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.6rem;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.5), transparent, rgba(24, 144, 255, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-glow-lg);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
 `;
 
 const MockupHeader = styled.div`
@@ -265,6 +428,8 @@ const MockupHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
 `;
 
 const MockupDots = styled.div`
@@ -277,6 +442,7 @@ const Dot = styled.div<{ color: string }>`
   height: 1.2rem;
   border-radius: 50%;
   background: ${(p) => p.color};
+  box-shadow: 0 2px 8px ${(p) => p.color}40;
 `;
 
 const MockupTitle = styled.div`
@@ -308,10 +474,29 @@ const SidebarItem = styled.div<{ active?: boolean }>`
   background: ${(p) => (p.active ? 'rgba(24, 144, 255, 0.1)' : 'transparent')};
   border-left: ${(p) => (p.active ? '3px solid rgb(var(--primary))' : '3px solid transparent')};
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: rgb(var(--primary));
+    transition: height 0.3s ease;
+  }
 
   &:hover {
     background: rgba(var(--text), 0.05);
+    color: rgb(var(--primary));
+    padding-left: 2rem;
+    
+    &::before {
+      height: 80%;
+    }
   }
 `;
 
@@ -329,12 +514,39 @@ const StatCard = styled.div`
   gap: 1.5rem;
   padding: 1.5rem;
   background: rgba(var(--text), 0.02);
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   border: 1px solid rgba(var(--text), 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateX(5px);
+    border-color: rgba(var(--primary), 0.3);
+    box-shadow: var(--shadow-md);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
 `;
 
 const StatCardIcon = styled.div`
   font-size: 2.5rem;
+  transition: transform 0.3s ease;
+  
+  ${StatCard}:hover & {
+    transform: scale(1.2) rotate(5deg);
+  }
 `;
 
 const StatCardContent = styled.div``;
@@ -342,7 +554,10 @@ const StatCardContent = styled.div``;
 const StatCardNumber = styled.div`
   font-size: 2rem;
   font-weight: 700;
-  color: rgb(var(--text));
+  background: linear-gradient(135deg, rgb(var(--text)) 0%, rgb(var(--primary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
 const StatCardLabel = styled.div`

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from 'components/Button';
 import ButtonGroup from 'components/ButtonGroup';
 import Container from 'components/Container';
+import FloatingParticles from 'components/FloatingParticles';
 import SectionTitle from 'components/SectionTitle';
 import { useDemoModalContext } from 'contexts/demo-modal.context';
 import { media } from 'utils/media';
@@ -26,6 +27,7 @@ export default function WaveCta() {
         ></path>
       </WaveSvg>
       <CtaWrapper>
+        <FloatingParticles count={20} color="rgba(24, 144, 255, 0.4)" />
         <Container>
           <Title>Email pazarlama stratejinizi bir üst seviyeye taşımaya hazır mısınız?</Title>
           <CustomButtonGroup>
@@ -45,20 +47,50 @@ export default function WaveCta() {
 }
 
 const WaveCtaWrapper = styled.div`
-  background: linear-gradient(180deg, transparent 0%, rgba(24, 144, 255, 0.03) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(24, 144, 255, 0.05) 100%);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 80rem;
+    height: 80rem;
+    background: radial-gradient(
+      circle,
+      rgba(24, 144, 255, 0.08) 0%,
+      transparent 70%
+    );
+    animation: pulse 10s ease-in-out infinite;
+    pointer-events: none;
+  }
 `;
 
 const WaveSvg = styled.svg`
   display: block;
   width: 100%;
-  height: 120px;
+  height: 150px;
   margin-bottom: -2px;
+  animation: float 8s ease-in-out infinite;
+  
+  path {
+    animation: shimmer 5s ease-in-out infinite;
+  }
 `;
 
 const CtaWrapper = styled.div`
-  background: linear-gradient(180deg, rgba(24, 144, 255, 0.05) 0%, rgba(24, 144, 255, 0.02) 100%);
+  background: linear-gradient(180deg, rgba(24, 144, 255, 0.08) 0%, rgba(24, 144, 255, 0.03) 100%);
+  backdrop-filter: blur(10px);
   padding: 6rem 0 10rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
 
   ${media('<=tablet')} {
     padding: 4rem 0 8rem;
@@ -66,19 +98,76 @@ const CtaWrapper = styled.div`
 `;
 
 const Title = styled(SectionTitle)`
-  color: rgb(var(--text));
+  background: linear-gradient(135deg, rgb(var(--text)) 0%, rgb(var(--primary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 4rem;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  text-shadow: 0 2px 20px rgba(24, 144, 255, 0.2);
 `;
 
 const OutlinedButton = styled(Button)`
-  border: 1px solid rgb(var(--primary));
-  color: rgb(var(--primary));
+  border: 2px solid rgb(var(--primary));
+  background: transparent;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.2) 0%, rgba(24, 144, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
   
   &:hover {
-    background: rgba(24, 144, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: rgb(var(--primary));
+    box-shadow: var(--shadow-glow);
+    
+    &::before {
+      opacity: 1;
+    }
   }
 `;
 
 const CustomButtonGroup = styled(ButtonGroup)`
   justify-content: center;
+  animation: scaleIn 0.8s ease-out 0.4s backwards;
+  
+  button:first-child {
+    background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+    box-shadow: var(--shadow-glow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: var(--shadow-glow-lg);
+      animation: pulse 2s ease-in-out infinite;
+      
+      &::before {
+        width: 30rem;
+        height: 30rem;
+      }
+    }
+  }
 `;

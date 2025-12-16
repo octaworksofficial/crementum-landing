@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
+import TrueFocus from 'components/TrueFocus';
 import { media } from 'utils/media';
 
 // Modern SVG Icons
@@ -126,8 +127,9 @@ export default function Features() {
     <FeaturesWrapper id="ozellikler">
       <Container>
         <Content>
-          <CustomOverTitle>Neler Kazanacaksınız?</CustomOverTitle>
-          <SectionTitle>İşletmenizi dönüştüren özellikler</SectionTitle>
+          <TrueFocus sentence="İşletmenizi dönüştüren özellikler" manualMode={true} blurAmount={3} borderColor="#1890ff">
+            <SectionTitle>İşletmenizi dönüştüren özellikler</SectionTitle>
+          </TrueFocus>
         </Content>
         <FeaturesGrid>
           {FEATURES.slice(0, 6).map((feature, idx) => {
@@ -156,11 +158,37 @@ export default function Features() {
 
 const FeaturesWrapper = styled.div`
   padding: 10rem 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 40rem;
+    height: 40rem;
+    background: radial-gradient(circle, rgba(24, 144, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: -10%;
+    width: 50rem;
+    height: 50rem;
+    background: radial-gradient(circle, rgba(24, 144, 255, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
 `;
 
 const Content = styled.div`
   text-align: center;
   margin-bottom: 6rem;
+  position: relative;
+  z-index: 1;
 `;
 
 const CustomOverTitle = styled(OverTitle)`
@@ -171,6 +199,8 @@ const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
+  position: relative;
+  z-index: 1;
 
   ${media('<=desktop')} {
     grid-template-columns: repeat(2, 1fr);
@@ -183,19 +213,47 @@ const FeaturesGrid = styled.div`
 `;
 
 const FeatureCard = styled.div`
-  background: rgb(var(--cardBackground));
-  border-radius: 1.5rem;
+  background: rgba(var(--cardBackground), 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(var(--text), 0.06);
-  transition: all 0.4s ease;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(var(--text), 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 2rem;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.3), transparent, rgba(24, 144, 255, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(24, 144, 255, 0.15);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-glow-lg);
+    border-color: rgba(var(--primary), 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
   }
+  
+  &:nth-child(1) { --index: 0; }
+  &:nth-child(2) { --index: 1; }
+  &:nth-child(3) { --index: 2; }
+  &:nth-child(4) { --index: 3; }
+  &:nth-child(5) { --index: 4; }
+  &:nth-child(6) { --index: 5; }
 `;
 
 const FeatureImageWrapper = styled.div`
@@ -203,6 +261,24 @@ const FeatureImageWrapper = styled.div`
   width: 100%;
   height: 28rem;
   overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  ${FeatureCard}:hover &::after {
+    opacity: 1;
+  }
 
   ${media('<=tablet')} {
     height: 22rem;
@@ -213,10 +289,12 @@ const FeatureImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.95);
 
   ${FeatureCard}:hover & {
-    transform: scale(1.05);
+    transform: scale(1.15);
+    filter: brightness(1.05);
   }
 `;
 
@@ -226,27 +304,70 @@ const ImageOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(24, 144, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  transition: background 0.5s ease;
+  
+  ${FeatureCard}:hover & {
+    background: linear-gradient(
+      180deg,
+      rgba(24, 144, 255, 0.1) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
 `;
 
 const FeatureIconOverlay = styled.div`
   position: absolute;
   top: 2rem;
   right: 2rem;
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-glow);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(var(--primary)), #096dd9);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
+  
+  ${FeatureCard}:hover & {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: var(--shadow-glow-lg);
+    
+    &::before {
+      opacity: 0.2;
+    }
+  }
 
   svg {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     color: rgb(24, 144, 255);
+    transition: all 0.5s ease;
+  }
+  
+  ${FeatureCard}:hover & svg {
+    transform: scale(1.1);
+    color: rgb(var(--primary));
   }
 `;
 
@@ -255,6 +376,23 @@ const FeatureContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2.5rem;
+    right: 2.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(var(--primary), 0.3) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  ${FeatureCard}:hover &::before {
+    opacity: 1;
+  }
 `;
 
 const FeatureTitle = styled.h3`
@@ -263,6 +401,12 @@ const FeatureTitle = styled.h3`
   margin-bottom: 1.2rem;
   color: rgb(var(--text));
   line-height: 1.3;
+  transition: all 0.3s ease;
+  
+  ${FeatureCard}:hover & {
+    color: rgb(var(--primary));
+    transform: translateX(5px);
+  }
 `;
 
 const FeatureDescription = styled.p`
@@ -270,4 +414,9 @@ const FeatureDescription = styled.p`
   line-height: 1.8;
   color: rgba(var(--text), 0.75);
   flex: 1;
+  transition: color 0.3s ease;
+  
+  ${FeatureCard}:hover & {
+    color: rgba(var(--text), 0.9);
+  }
 `;

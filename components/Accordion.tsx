@@ -37,6 +37,44 @@ export default function Accordion({ title, isOpen, children }: PropsWithChildren
   );
 }
 
+const AccordionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2rem;
+  background: rgba(var(--cardBackground), 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(var(--text), 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(24, 144, 255, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  &:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(var(--primary), 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  ${media('<=desktop')} {
+    width: 100%;
+  }
+`;
+
 const Title = styled.h3`
   font-size: 2rem;
   width: 90%;
@@ -45,6 +83,13 @@ const Title = styled.h3`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+  
+  ${AccordionWrapper}:hover & {
+    color: rgb(var(--primary));
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -55,27 +100,28 @@ const TitleWrapper = styled.div`
 
 const Icon = styled.div<{ isActive: boolean }>`
   width: 2.4rem;
-  transition: transform 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: rotateZ(${(p) => (p.isActive ? 180 : 0)}deg);
+  color: ${(p) => (p.isActive ? 'rgb(var(--primary))' : 'rgba(var(--text), 0.6)')};
+  position: relative;
+  z-index: 1;
+  
+  ${AccordionWrapper}:hover & {
+    color: rgb(var(--primary));
+    transform: rotateZ(${(p) => (p.isActive ? 180 : 0)}deg) scale(1.1);
+  }
 `;
 
 const Description = styled.div`
   margin-top: 2.5rem;
   font-size: 1.6rem;
   font-weight: normal;
-`;
-
-const AccordionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1.5rem;
-  background: rgb(var(--cardBackground));
-  box-shadow: var(--shadow-md);
-  cursor: pointer;
-  border-radius: 0.6rem;
-  transition: opacity 0.2s;
-
-  ${media('<=desktop')} {
-    width: 100%;
+  position: relative;
+  z-index: 1;
+  opacity: 0.85;
+  line-height: 1.7;
+  
+  ${AccordionWrapper}:hover & {
+    opacity: 1;
   }
 `;

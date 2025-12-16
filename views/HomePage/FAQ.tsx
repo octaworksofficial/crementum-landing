@@ -4,6 +4,7 @@ import Accordion from 'components/Accordion';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
+import TrueFocus from 'components/TrueFocus';
 import { media } from 'utils/media';
 
 const FAQ_ITEMS = [
@@ -47,7 +48,9 @@ export default function FAQ() {
       <Container>
         <Content>
           <CustomOverTitle>Sıkça Sorulan Sorular</CustomOverTitle>
-          <SectionTitle>Merak Ettiğiniz Her Şey</SectionTitle>
+          <TrueFocus sentence="Merak Ettiğiniz Her Şey" manualMode={true} blurAmount={3} borderColor="#1890ff">
+            <SectionTitle>Merak Ettiğiniz Her Şey</SectionTitle>
+          </TrueFocus>
         </Content>
         <FAQGrid>
           <FAQColumn>
@@ -77,11 +80,32 @@ export default function FAQ() {
 const FAQWrapper = styled.div`
   padding: 10rem 0;
   background: rgb(var(--secondBackground));
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 50rem;
+    height: 50rem;
+    background: radial-gradient(
+      circle,
+      rgba(24, 144, 255, 0.04) 0%,
+      transparent 70%
+    );
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+  }
 `;
 
 const Content = styled.div`
   text-align: center;
   margin-bottom: 6rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
 `;
 
 const CustomOverTitle = styled(OverTitle)`
@@ -92,6 +116,8 @@ const FAQGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+  position: relative;
+  z-index: 1;
 
   ${media('<=tablet')} {
     grid-template-columns: 1fr;
@@ -99,6 +125,9 @@ const FAQGrid = styled.div`
 `;
 
 const FAQColumn = styled.div`
+  animation: fadeInUp 0.6s ease-out backwards;
+  animation-delay: 0.2s;
+  
   & > *:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -109,14 +138,38 @@ const ContactNote = styled.p`
   margin-top: 5rem;
   font-size: 1.6rem;
   opacity: 0.8;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.8s ease-out 0.6s backwards;
+  padding: 2rem;
+  background: rgba(var(--cardBackground), 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(var(--text), 0.08);
 `;
 
 const ContactLink = styled.a`
-  color: rgb(var(--primary));
+  background: linear-gradient(135deg, rgb(var(--primary)) 0%, #096dd9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 600;
   text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgb(var(--primary)), #096dd9);
+    transition: width 0.3s ease;
+  }
 
-  &:hover {
-    text-decoration: underline;
+  &:hover::after {
+    width: 100%;
   }
 `;
