@@ -32,7 +32,7 @@ export default function Hero() {
           </BulletItem>
           <BulletItem>
             <BulletIcon>✓</BulletIcon>
-            <BulletText>Müşteri arşivinizi en değerli şekilde kullanın, hiçbir detayı kaçırmayın</BulletText>
+            <BulletText>Yapay zeka ile müşteri arşivinizi en değerli şekilde kullanın, hiçbir detayı kaçırmayın</BulletText>
           </BulletItem>
         </BulletList>
         <CustomButtonGroup>
