@@ -10,7 +10,7 @@ const pool = new Pool({
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
   try {
@@ -18,13 +18,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Validate required fields
     if (!fullName || !email) {
-      return res.status(400).json({ error: 'Ad soyad ve email gereklidir.' });
+      return res.status(400).json({ success: false, message: 'Ad soyad ve email gereklidir.' });
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'Geçerli bir email adresi giriniz.' });
+      return res.status(400).json({ success: false, message: 'Geçerli bir email adresi giriniz.' });
     }
 
     // Insert into database
@@ -54,6 +54,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   } catch (error) {
     console.error('Database error:', error);
-    return res.status(500).json({ error: 'Sunucu hatası. Lütfen tekrar deneyin.' });
+    return res.status(500).json({ success: false, message: 'Sunucu hatası. Lütfen tekrar deneyin.' });
   }
 }
